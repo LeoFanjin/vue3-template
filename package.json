@@ -10,9 +10,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.4",
     "core-js": "^3.6.5",
+    "element-plus": "^1.0.2-beta.28",
+    "moment": "^2.29.1",
+    "qs": "^6.10.1",
     "register-service-worker": "^1.7.1",
+    "underscore": "^1.13.1",
+    "underscore.string": "^3.3.5",
     "vue": "^3.0.0",
+    "vue-i18n": "^8.25.1",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
@@ -29,7 +36,10 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "^2.0.0-0",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "babel-plugin-import": "^1.13.3",
     "chromedriver": "92",
+    "compression-webpack-plugin": "^8.0.1",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
@@ -38,6 +48,8 @@
     "less-loader": "^5.0.0",
     "prettier": "^2.2.1",
     "typescript": "~3.9.3",
-    "vue-jest": "^5.0.0-0"
+    "vue-cli-plugin-element-plus": "0.0.13",
+    "vue-jest": "^5.0.0-0",
+    "webpack-bundle-analyzer": "^4.4.2"
   }
 }

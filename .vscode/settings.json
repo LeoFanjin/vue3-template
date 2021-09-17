@@ -1,0 +1,36 @@
+{
+    "extensions.autoUpdate": false,
+    "prettier.eslintIntegration": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "eslint.validate": ["javascript", "javascriptreact", "vue"],
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "vetur.format.defaultFormatter.html": "prettier",
+    "vetur.format.defaultFormatterOptions": {
+        "prettier": {
+            "eslintIntegration": true
+        }
+    },
+    "vetur.format.defaultFormatter.js": "prettier-eslint",
+    "vetur.format.defaultFormatter.css": "prettier",
+    "vetur.format.defaultFormatter.postcss": "prettier",
+    "vetur.format.defaultFormatter.scss": "prettier",
+    "vetur.format.defaultFormatter.less": "prettier",
+    "vetur.format.defaultFormatter.stylus": "stylus-supremacy",
+    "vetur.format.defaultFormatter.ts": "prettier"
+    //.vue文件template格式化支持，并使用js-beautify-html插件
+    /* "vetur.format.defaultFormatter.html": "js-beautify-html",
+    //js-beautify-html格式化配置，属性强制换行
+    //文档：https://github.com/beautify-web/js-beautify#css--html
+    "vetur.format.defaultFormatterOptions": {
+        "js-beautify-html": {
+            "wrap_attributes": "force"
+        }
+    },
+    "eslint.autoFixOnSave": true */
+}
