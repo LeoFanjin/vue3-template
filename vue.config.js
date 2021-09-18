@@ -19,8 +19,15 @@ module.exports = {
   },
   // publicPath: '/ap/web/',
   configureWebpack: (config) => {
+    config.resolve.modules.push('common_modules');
     // 初始配置里已有类型：'.mjs', '.js', '.jsx', '.vue', '.json', '.wasm'
     config.resolve.extensions.push('.ts', '.tsx');
+    config.plugins.push(
+      new webpack.ProvidePlugin({
+        _: 'underscore',
+        G: path.join(__dirname, './src/config/g.js')
+      })
+    );
     if (process.env.NODE_ENV === 'production') {
       config.devtool = 'cheap-module-source-map';
       // 减小element多语言包的大小
@@ -31,7 +38,7 @@ module.exports = {
       //     'element-plus/lib/locale/lang/zh-cn'
       //   )
       // );
-      /* const productionGzipExtensions = ['html', 'js', 'css'];
+      const productionGzipExtensions = ['html', 'js', 'css'];
       config.plugins.push(
         // Gzip压缩
         new CompressionWebpackPlugin({
@@ -42,7 +49,7 @@ module.exports = {
           minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理
           deleteOriginalAssets: false // 删除原文件
         })
-      ); */
+      );
       // 打包分析工具
       if (process.env.npm_config_report) {
         const BundleAnalyzerPlugin =

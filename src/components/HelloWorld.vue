@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <el-button @click="handleHello">hello</el-button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -131,6 +132,14 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  setup(props, { emit }) {
+    const handleHello = () => {
+      emit('hello', 'hello!!');
+    };
+    return {
+      handleHello
+    };
   }
 };
 </script>

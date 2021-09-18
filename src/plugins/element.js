@@ -1,4 +1,4 @@
-import { ElButton, ElInput, ElSelect } from 'element-plus';
+import { ElButton, ElInput, ElSelect, ElDialog } from 'element-plus';
 // import 'element-plus/lib/theme-chalk/index.css';
 import 'element-plus/lib/theme-chalk/base.css';
 import lang from 'element-plus/lib/locale/lang/zh-cn';
@@ -10,4 +10,5 @@ export default (app) => {
   app.use(ElButton);
   app.use(ElInput);
   app.use(ElSelect);
+  app.use(ElDialog);
 };
