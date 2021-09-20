@@ -20,26 +20,43 @@
 </template>
 
 <script>
+import { defineComponent, computed } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { mapGetters } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 's_ribbon',
-  computed: mapGetters(['getCurrentResource']),
-  created() {},
-  methods: {
-    goHome() {
-      this.$router.push(G.homePage);
-    },
-    goPage(page) {
-      this.$router.push(page);
-    },
-    refresh() {
-      var a = this.$route.fullPath;
-      this.$router.replace({
+  computed: {
+    ...mapGetters(['getCurrentResource'])
+  },
+  setup() {
+    const router = useRouter(),
+      route = useRoute();
+
+    /* computed */
+    /* const getCurrentResource = computed(() => {
+      mapGetters(['getCurrentResource']);
+    }); */
+
+    /* methods */
+    /* const goHome = () => {
+      router.push(G.homePage);
+    }; */
+    const goPage = (page) => {
+      router.push(page);
+    };
+    const refresh = () => {
+      const a = route.fullPath;
+      router.replace({
         path: '/404',
         query: { path: a }
       });
-    }
+    };
+
+    return {
+      goPage,
+      refresh
+    };
   }
-};
+});
 </script>

@@ -21,18 +21,18 @@
   <!-- HEADER -->
   <div class="app-head">
     <div class="app-side-nav__brand" @click="goPage('/home')">
-      <img class="brand-logo" v-if="showLogo" :src="$store.state.logo_src" />
+      <img class="brand-logo" v-if="showLogo" :src="store.state.logo_src" />
       <strong class="brand-name" v-if="!showLogo">{{ title }}</strong>
     </div>
     <ul class="app-head__actions">
       <li class="message profile-name" style="cursor: auto; max-width: 250px">
         <img
-          :src="getLoginInfo.userHeadAddress"
+          :src="getLoginInfo?.userHeadAddress"
           class="img-circle"
           style="display: inline-block"
         />
-        <span :title="$store.state.loginInfo.userName"
-          >&nbsp;{{ $store.state.loginInfo.userName }}</span
+        <span :title="store.state.loginInfo.userName"
+          >&nbsp;{{ store.state.loginInfo.userName }}</span
         >
         <div class="head_divide_line"></div>
         <!-- <img v-if="isShowSystemHead" :src="getLoginInfo.userHeadAddress" class="img-circle"> -->
@@ -61,6 +61,7 @@
       </li>
       <li
         v-for="item in getLinkResource"
+        :key="item.id"
         :class="{ active: item.isActive }"
         class="message"
         @click="clickLinkResource(item)"
@@ -77,7 +78,7 @@
           <div class="head_divide_line"></div>
         </li>
       </el-tooltip>-->
-      <li class="link" @click="logout">
+      <li class="link" @click="userLogout">
         <a><i class="icon iconfont icon-ap-logout"></i></a>
         <div class="head_divide_line"></div>
       </li>
@@ -87,21 +88,19 @@
 </template>
 
 <script>
+import { defineComponent, ref, computed } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { ElMessage } from 'element-plus';
 import _s from 'underscore.string';
 import { logout, cookie, resource as resourceUtil } from 'utils';
 import { mapGetters } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 's_head',
-  computed: mapGetters(['getLinkResource', 'getLoginInfo']),
-  data() {
+  /* data() {
     return {
-      showLogo: G.showLogo,
-      showHome: G.homeLocation === 'top',
-      is_full: false,
-      title: G.title,
-      errorPage: G.errorPage || '/error',
-      isShowSystemHead: false,
       defaultImg: [
         {
           src: '../static/image/head/default/bp_boy_1.png',
@@ -133,28 +132,62 @@ export default {
           active: false,
           id: 6
         }
-      ],
-      manualAddress: G.userManual,
-      isShowManual: false
+      ]
     };
-  },
-  created() {
-    //判断显示系统头像，还是用户上传头像
-    if (this.$store.state.loginInfo.userHeadAddress) {
-      this.isShowSystemHead = true;
-    } else {
-      this.isShowSystemHead = false;
-    }
-  },
-  methods: {
+  }, */
+  setup() {
+    const store = useStore(),
+      router = useRouter(),
+      { t } = useI18n();
+    /* data */
+    // const manualAddress = ref(G.userManual);
+    const showLogo = ref(G.showLogo);
+    const showHome = ref(G.homeLocation === 'top');
+    const title = ref(G.title);
+    const isFull = ref(false);
+    const isShowSystemHead = ref(false);
+    const errorPage = ref(G.errorPage || '/error');
+
+    /* computed */
+    const getLinkResource = computed(() => {
+      mapGetters(['getLinkResource']);
+    });
+
+    const getLoginInfo = computed(() => {
+      mapGetters(['getLoginInfo']);
+    });
+
+    /* methods */
     //点击链接资源
-    clickLinkResource(resource) {
-      resourceUtil.activeMenu(this, resource.path, this.errorPage, false);
-    },
-    goHome() {
-      this.$router.push(G.homePage);
-    },
-    goPortal() {
+    const clickLinkResource = (resource) => {
+      resourceUtil.activeMenu(
+        { store, router },
+        resource.path,
+        errorPage.value,
+        false
+      );
+    };
+
+    /* const goHome = () => {
+      router.push(G.homePage);
+    }; */
+
+    /* 退出 */
+    const userLogout = () => {
+      store
+        .dispatch('logout')
+        .then(() => {
+          if (isFull.value) {
+            launchFullScreen();
+          }
+          logout({ router });
+        })
+        .catch(() => {
+          ElMessage.error(t('head.msg.logout_fail'));
+        });
+    };
+
+    const goPortal = () => {
       if (G.jump) {
         G.portalPage = G.jump;
       } else if (cookie.getCookie('jump')) {
@@ -162,14 +195,17 @@ export default {
         G.portalPage = G.jump;
       }
       window.location.href = G.portalPage;
-    },
-    goPage(page) {
+    };
+
+    const goPage = (page) => {
       if (page) {
-        this.$router.push(page);
+        router.push(page);
       }
-    },
-    launchFullScreen() {
-      if (this.is_full) {
+    };
+
+    /* 全屏 */
+    const launchFullScreen = () => {
+      if (isFull.value) {
         if (document.exitFullscreen) {
           document.exitFullscreen();
         } else if (document.mozCancelFullScreen) {
@@ -189,7 +225,7 @@ export default {
           WsSell.SendKeys('{F11}');
         }
       } else {
-        var de = document.documentElement;
+        const de = document.documentElement;
         if (de.requestFullscreen) {
           de.requestFullscreen();
         } else if (de.mozRequestFullScreen) {
@@ -203,27 +239,30 @@ export default {
           WsSell.SendKeys('{F11}');
         }
       }
-      this.is_full = !this.is_full;
-    },
-    logout() {
-      var self = this;
+      isFull.value = !isFull.value;
+    };
 
-      self.$store
-        .dispatch('logout')
-        .then(function () {
-          if (self.is_full) {
-            self.launchFullScreen();
-          }
-          logout(self);
-        })
-        .catch(function () {
-          self.$message.error(self.$t('head.msg.logout_fail'));
-        });
-    },
-    showManual() {
-      var self = this;
-      self.isShowManual = !self.isShowManual;
+    //判断显示系统头像，还是用户上传头像
+    if (store.state.loginInfo.userHeadAddress) {
+      isShowSystemHead.value = true;
+    } else {
+      isShowSystemHead.value = false;
     }
+
+    return {
+      showLogo,
+      showHome,
+      title,
+      store,
+      getLoginInfo,
+      getLinkResource,
+      clickLinkResource,
+      goPage,
+      goPortal,
+      userLogout
+      // goHome,
+      // launchFullScreen
+    };
   }
-};
+});
 </script>
