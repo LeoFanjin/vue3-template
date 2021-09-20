@@ -9,7 +9,7 @@ export const queryDataItemByType = (store, params) => {
 
   if (key) {
     if (!store.state[key] || store.state[key].length === 0) {
-      var param = {
+      const param = {
         url: '/ap-system/findChildLibrary.do',
         commit: store.commit,
         data: params
@@ -33,7 +33,7 @@ export const queryDataItemByType = (store, params) => {
  * 查询数据字典
  */
 export const queryDataItemList = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findLibrary.do',
     commit: commit,
     data: params
@@ -45,7 +45,7 @@ export const queryDataItemList = ({ commit }, params) => {
  * 新增数据字典
  */
 export const saveDict = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/saveLibrary.do',
     commit: commit,
     data: params
@@ -57,7 +57,7 @@ export const saveDict = ({ commit }, params) => {
  * 修改数据字典
  */
 export const modifyDataItemById = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/modifyLibrary.do',
     commit: commit,
     data: params
@@ -69,7 +69,7 @@ export const modifyDataItemById = ({ commit }, params) => {
  * 删除数据字典
  */
 export const removeDataItemById = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/removeLibrary.do',
     commit: commit,
     data: params
@@ -79,7 +79,7 @@ export const removeDataItemById = ({ commit }, params) => {
 
 /* export const initDict = ({ commit, state }, params) => {
   if (!state.isInit) {
-    var param = {
+    const param = {
       url: G.base_api + '/ap-system/findLibrary.do',
       dataType: 'json',
       commit: commit,
@@ -99,7 +99,7 @@ export const removeDataItemById = ({ commit }, params) => {
 
 export const initDict = ({ commit, state }, params) => {
   if (!state.isInit) {
-    var param = {
+    const param = {
       url: '/ap-system/findLibrary.do',
       commit: commit,
       data: params

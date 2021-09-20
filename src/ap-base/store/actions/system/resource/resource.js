@@ -4,7 +4,7 @@ import { Axios } from 'utils';
  * 查询所有资源
  */
 export const queryResource = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findResource.do',
     commit: commit,
     data: params
@@ -16,7 +16,7 @@ export const queryResource = ({ commit }, params) => {
  * 查询资源详情
  */
 export const queryResourceDetail = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findResourceInfo.do',
     commit: commit,
     data: params
@@ -28,7 +28,7 @@ export const queryResourceDetail = ({ commit }, params) => {
  * 删除资源
  */
 export const removeResource = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/removeResource.do',
     commit: commit,
     data: params
@@ -40,7 +40,7 @@ export const removeResource = ({ commit }, params) => {
  * 添加资源
  */
 export const addResource = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/saveResource.do',
     commit: commit,
     data: params
@@ -52,7 +52,7 @@ export const addResource = ({ commit }, params) => {
  * 修改资源
  */
 export const modifyResource = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/modifyResource.do',
     commit: commit,
     data: params
@@ -64,7 +64,7 @@ export const modifyResource = ({ commit }, params) => {
  * 切换岗位/组织机构位置
  */
 export const changePositionByResource = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/sortResource.do',
     commit: commit,
     data: params

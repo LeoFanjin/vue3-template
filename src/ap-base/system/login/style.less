@@ -66,9 +66,11 @@
       .login_code {
         img {
           min-width: 104px;
+          height: 34px;
         }
-        .el-input-group__append, .el-input-group__prepend {
-          border: 0
+        .el-input-group__append,
+        .el-input-group__prepend {
+          border: 0;
         }
       }
       .el-button--primary {
@@ -87,7 +89,8 @@
         border-radius: 6px;
         font-weight: bold;
         word-spacing: 10px;
-        &[disabled], &.is-disabled {
+        &[disabled],
+        &.is-disabled {
           color: @gray;
           background-color: #fff !important;
           border-color: @gray;

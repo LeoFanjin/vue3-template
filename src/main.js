@@ -1,4 +1,5 @@
 import './plugins/G';
+import './plugins/resource';
 import { createApp } from 'vue';
 import App from './App.vue';
 import './registerServiceWorker';

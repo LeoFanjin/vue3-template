@@ -7,7 +7,7 @@ import { Axios } from 'utils';
  * @returns {*}
  */
 /* export const queryMyResources = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: G.base_api + '/ap-system/getUserResourceList.do',
     dataType: 'json',
     data: params
@@ -24,7 +24,7 @@ import { Axios } from 'utils';
   });
 }; */
 export const queryMyResources = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/getUserResourceList.do',
     data: params
   };
@@ -41,7 +41,7 @@ export const queryMyResources = ({ commit }, params) => {
  * 查询我的权限
  */
 export const findMyAuth = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: G.base_api + '/ap-system/getUserAuthList.do',
     data: content,
     commit: commit,
@@ -53,7 +53,7 @@ export const findMyAuth = ({ commit }, content) => {
  * 导出角色
  */
 export const exportRole = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: G.base_api + '/ap-system/exportRole',
     data: content,
     commit: commit,

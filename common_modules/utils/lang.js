@@ -1,17 +1,17 @@
 import { Storage } from './storage';
 
-export var langx = {
+export const langx = {
   // 设置语言
-  setLanguage($vm, lang) {
-    $vm.$i18n.locale = lang;
+  setLanguage($i18n, lang) {
+    $i18n.locale.value = lang;
     G.lang = lang;
     Storage.set(G.lang_key, lang);
   },
   // 读取语言
-  getLanguage($vm) {
+  getLanguage($i18n) {
     let lang = Storage.get(G.lang_key);
     if (!lang) {
-      lang = $vm.$i18n.locale;
+      lang = $i18n.locale.value;
     }
     return lang;
   }

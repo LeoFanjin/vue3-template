@@ -2,7 +2,7 @@ import { Axios } from 'utils';
 
 /** 登录*/
 export const login = ({ commit }, formLogin) => {
-  var param = {
+  const param = {
     url: '/ap-system/UserLogin.do',
     data: formLogin,
     commit: commit
@@ -30,7 +30,7 @@ export const login = ({ commit }, formLogin) => {
 
 /** 退出 */
 export const logout = ({ commit }) => {
-  var params = {
+  const params = {
     url: '/ap-system/logout.do',
     data: {},
     commit: commit

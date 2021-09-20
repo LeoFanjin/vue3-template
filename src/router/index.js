@@ -19,6 +19,8 @@ const routes = [
             /* webpackChunkName: "home" */ '@/ap-base/system/home/main.vue'
           )
       },
+      require('../views/demo/router'),
+      require('../views/about/router'),
       {
         path: '404',
         name: '_404',

@@ -4,12 +4,12 @@
   top: 0;
   left: 0;
   right: 0;
-  height: @app-head-height;
+  height: @app-head-height - 1;
   background-color: @head-background-color;
   border-bottom: 1px solid @app-model-border-color;
   font-size: @head-font-size;
   z-index: 4;
-  transition: left .2s linear 0s;
+  transition: left 0.2s linear 0s;
   .clearfix();
 }
 
@@ -18,7 +18,7 @@
   .clearfix;
   cursor: pointer;
   display: inline-block;
-  height: @app-head-height;
+  // height: @app-head-height;
   padding: (@app-head-height - 32) / 2 25px;
   line-height: 32px;
   letter-spacing: 1px;
@@ -26,7 +26,7 @@
   overflow-y: hidden;
   overflow-x: hidden;
   border-right: 1px solid lighten(@nav-background-base, 10%);
-  border-bottom: 1px solid @app-model-border-color;
+  // border-bottom: 1px solid @app-model-border-color;
   // width: @app-side-nav-width;
   width: auto;
   strong {
@@ -36,7 +36,7 @@
     width: @app-head-logo-width;
     height: @app-head-logo-height;
   }
-  .brand-name{
+  .brand-name {
     font-style: @app-head-logo-fontsize;
     font-family: @app-font-family;
   }
@@ -54,9 +54,9 @@
     cursor: pointer;
     margin-right: 1px;
 
-    &.message{
+    &.message {
       padding: (@app-head-height - 22) / 2 10px;
-      >span{
+      > span {
         float: right;
         display: inline-block;
         max-width: 120px;
@@ -79,7 +79,7 @@
           width: 140px;
           text-align: center;
           border-bottom: 1px solid @app-model-border-color;
-          &:last-child{
+          &:last-child {
             border-bottom: 0;
           }
           //&:hover{
@@ -87,10 +87,10 @@
           //}
         }
       }
-      &:after{
+      &:after {
         display: none;
       }
-      &:active{
+      &:active {
         background: none;
       }
     }
@@ -103,13 +103,13 @@
       > a {
         font-size: @head-font-size + 6;
       }
-      .download-link{
-        span{
+      .download-link {
+        span {
           font-size: @head-font-size !important;
         }
       }
     }
-    &:hover{
+    &:hover {
       > a {
         color: @head-font-color-hover;
       }
@@ -119,7 +119,7 @@
     }
     &.active {
       background-color: @head-hover-background-color;
-      a{
+      a {
         color: #2f3239;
       }
     }
@@ -129,10 +129,10 @@
       img {
         width: 30px;
         height: 30px;
-        border: 1px solid #D4D7D9;
+        border: 1px solid #d4d7d9;
       }
     }
-    .head_divide_line{
+    .head_divide_line {
       height: 30px;
       position: absolute;
       top: 10px;

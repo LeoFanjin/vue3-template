@@ -17,7 +17,8 @@
   .slide-leave-active {
     .transition(all, 0.4s);
   }
-  .slide-enter, .slide-leave-active {
+  .slide-enter,
+  .slide-leave-active {
     opacity: 0;
   }
 }
@@ -29,7 +30,7 @@
   right: 0;
   bottom: 0;
   border-right: 1px solid @app-model-border-color;
-  .app-side-nav-fold{
+  .app-side-nav-fold {
     text-align: center;
     background: @app-nav-fold-background-color;
     border-bottom: 1px solid @app-model-border-color;
@@ -38,7 +39,7 @@
     height: @app-nav-line-height + 1;
     width: 100%;
     cursor: pointer;
-    &:hover{
+    &:hover {
       color: lighten(@app-nav-fold-color, 5%);
     }
   }
@@ -53,8 +54,8 @@
     }
     > li {
       position: relative;
-      &.active{
-        &:not(.open){
+      &.active {
+        &:not(.open) {
           > a {
             background-color: @nav-color-active;
           }
@@ -66,20 +67,21 @@
         display: block;
         padding: @app-nav-padding;
 
-        height: @app-nav-line-height;
+        // height: @app-nav-line-height;
         &:hover {
           background-color: @nav-color-active;
         }
-        span{
+        span {
           text-overflow: ellipsis;
-          white-space:nowrap;
+          white-space: nowrap;
           max-width: 140px;
-          overflow:hidden;
+          overflow: hidden;
           line-height: @app-nav-line-height - @app-nav-padding-top * 2;
           display: inline-block;
         }
 
-        > .icon, > .fa {
+        > .icon,
+        > .fa {
           font-size: @app-nav-font-size + 2;
           //margin-right: 8px;
           white-space: nowrap;
@@ -90,10 +92,10 @@
           text-align: center;
           display: inline-block;
         }
-        b{
+        b {
           padding-top: 5px;
           float: right;
-          i{
+          i {
             font-size: @app-nav-font-size + 2;
           }
         }
@@ -104,7 +106,7 @@
         margin: 0;
         z-index: 99;
         > li {
-          &.active{
+          &.active {
             > a {
               background-color: @nav-color-active;
               &:hover {
@@ -119,11 +121,11 @@
             padding-left: @app-nav-padding-left + 10;
             height: @app-nav-line-height;
             text-decoration: none;
-            span{
+            span {
               vertical-align: inherit;
               text-overflow: ellipsis;
-              overflow:hidden;
-              white-space:nowrap;
+              overflow: hidden;
+              white-space: nowrap;
               max-width: 140px;
               line-height: @app-nav-line-height - @app-nav-padding-top * 2;
               display: inline-block;
@@ -131,7 +133,8 @@
             &:hover {
               background-color: @nav-color-active;
             }
-            > .icon, > .fa {
+            > .icon,
+            > .fa {
               font-size: @app-nav-font-size;
               //margin-right: 8px;
               white-space: nowrap;
@@ -154,7 +157,7 @@
   .app-content {
     left: @app-side-nav-collapsed-width;
   }
-  .app-ribbon{
+  .app-ribbon {
     left: @app-side-nav-collapsed-width;
   }
   .app-side-nav {
@@ -170,8 +173,8 @@
       > li {
         padding: 0;
         opacity: 0.9;
-        &.active{
-          &:not(.open){
+        &.active {
+          &:not(.open) {
             &::before {
               top: 15px;
             }
@@ -195,7 +198,7 @@
         > ul {
           background-color: @nav-sub-background-content;
           > li {
-            &:not(.active){
+            &:not(.active) {
               > a {
                 .slide-hover(@app-side-nav-collapsed-width, @app-nav-line-height - 1, @app-text-color, @nav-color-active);
                 &:hover {

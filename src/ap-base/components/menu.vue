@@ -175,7 +175,7 @@ export default {
       this.is_collapsed = false;
     },
     closeNav() {
-      document.querySelector('body').addClass('app-nav-collapsed');
+      document.querySelector('body').classList.add('app-nav-collapsed');
       this.is_collapsed = true;
     },
     /* 收缩nav */

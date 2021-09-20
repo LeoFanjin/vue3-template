@@ -8,7 +8,7 @@ export const queryEmployeeInfoList = ({ commit }, content) => {
     content.userAccount += ':f';
   }
 
-  var param = {
+  const param = {
     url: '/ap-system/findUser.do',
     data: content,
     commit: commit
@@ -20,7 +20,7 @@ export const queryEmployeeInfoList = ({ commit }, content) => {
  * 新增用户
  */
 export const saveUserRegInfo = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/saveUser.do',
     data: content,
     commit: commit
@@ -32,7 +32,7 @@ export const saveUserRegInfo = ({ commit }, content) => {
  * 查询用户详情
  */
 export const queryEmployeeInfoDetail = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/findUserInfo.do',
     data: content,
     commit: commit
@@ -44,7 +44,7 @@ export const queryEmployeeInfoDetail = ({ commit }, content) => {
  * 更新用户详情
  */
 export const modifyUserRegInfo = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/modifyUser.do',
     data: content,
     commit: commit
@@ -56,7 +56,7 @@ export const modifyUserRegInfo = ({ commit }, content) => {
  * 删除用户（单个删除）
  */
 export const removeEmployeeInfo = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/removeUser.do',
     data: content,
     commit: commit
@@ -68,7 +68,7 @@ export const removeEmployeeInfo = ({ commit }, content) => {
  * 密码初始化
  */
 export const initPassword = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/initUserPassword.do',
     data: content,
     commit: commit
@@ -80,7 +80,7 @@ export const initPassword = ({ commit }, content) => {
  * 修改密码
  */
 export const modifyPassword = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/settingUserPassword.do',
     data: content,
     commit: commit
@@ -92,7 +92,7 @@ export const modifyPassword = ({ commit }, content) => {
  * 修改我的信息
  */
 export const modifyMyInfo = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/modifyUserInfo.do',
     data: content,
     commit: commit
@@ -108,7 +108,7 @@ export const modifyMyInfo = ({ commit }, content) => {
  * 查询用户头像
  */
 export const findUserHead = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/findUserHeadImage.do',
     data: content,
     commit: commit
@@ -121,7 +121,7 @@ export const findUserHead = ({ commit }, content) => {
  * 删除用户头像
  */
 export const removeUserHead = ({ commit }, content) => {
-  var param = {
+  const param = {
     url: '/ap-system/removeUserHeadImage.do',
     data: content,
     commit: commit

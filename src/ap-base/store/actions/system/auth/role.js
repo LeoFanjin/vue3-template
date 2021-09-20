@@ -4,7 +4,7 @@ import { Axios } from 'utils';
  * 获取全部角色
  */
 export const queryAllRole = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findRole.do',
     commit: commit,
     data: params
@@ -16,7 +16,7 @@ export const queryAllRole = ({ commit }, params) => {
  * 根据用户查询角色
  */
 export const queryRoleByUser = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findUserRole.do',
     commit: commit,
     data: params
@@ -28,7 +28,7 @@ export const queryRoleByUser = ({ commit }, params) => {
  * 保存角色信息
  */
 export const saveRole = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/saveRole.do',
     commit: commit,
     data: params
@@ -40,7 +40,7 @@ export const saveRole = ({ commit }, params) => {
  * 修改角色信息
  */
 export const modifyRole = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/modifyRole.do',
     commit: commit,
     data: params
@@ -52,7 +52,7 @@ export const modifyRole = ({ commit }, params) => {
  * 删除角色信息
  */
 export const removeRole = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/removeRole.do',
     commit: commit,
     data: params
@@ -64,7 +64,7 @@ export const removeRole = ({ commit }, params) => {
  * 绑定角色信息
  */
 export const saveRoleBind = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/saveUserRoleRel.do',
     commit: commit,
     data: params

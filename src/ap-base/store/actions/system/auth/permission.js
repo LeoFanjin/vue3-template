@@ -4,7 +4,7 @@ import { Axios } from 'utils';
  * 获取全部许可
  */
 export const queryAllPermission = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findPermission.do',
     commit: commit,
     data: params
@@ -16,7 +16,7 @@ export const queryAllPermission = ({ commit }, params) => {
  * 根据用户查询许可
  */
 export const queryPermissionByUser = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findPermissionByUser.do',
     commit: commit,
     data: params
@@ -28,7 +28,7 @@ export const queryPermissionByUser = ({ commit }, params) => {
  * 根据组织查询许可
  */
 export const queryPermissionByOrgan = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findPermissionByOrgan.do',
     commit: commit,
     data: params
@@ -41,7 +41,7 @@ export const queryPermissionByOrgan = ({ commit }, params) => {
  * 查询许可以及操作
  */
 export const findPermissionByRole = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/findPermissionByRole.do',
     commit: commit,
     data: params
@@ -53,7 +53,7 @@ export const findPermissionByRole = ({ commit }, params) => {
  * 保存许可信息
  */
 export const savePermission = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/savePermission.do',
     commit: commit,
     data: params
@@ -65,7 +65,7 @@ export const savePermission = ({ commit }, params) => {
  * 删除许可信息
  */
 export const removePermission = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/removePermission.do',
     commit: commit,
     data: params
@@ -77,7 +77,7 @@ export const removePermission = ({ commit }, params) => {
  * 修改许可信息
  */
 export const modifyPermission = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/modifyPermission.do',
     commit: commit,
     data: params
@@ -89,7 +89,7 @@ export const modifyPermission = ({ commit }, params) => {
  * 为用户绑定许可
  */
 export const bindPermissionUser = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/saveUserPermissionRel.do',
     commit: commit,
     data: params
@@ -102,7 +102,7 @@ export const bindPermissionUser = ({ commit }, params) => {
  * 绑定组织绑定许可
  */
 export const bindPermissionOrgan = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/savePermissionOrganRel.do',
     commit: commit,
     data: params
@@ -115,7 +115,7 @@ export const bindPermissionOrgan = ({ commit }, params) => {
  * 为角色绑定许可
  */
 export const bindPermissionRole = ({ commit }, params) => {
-  var param = {
+  const param = {
     url: '/ap-system/savePermissionRoleRel.do',
     commit: commit,
     data: params
