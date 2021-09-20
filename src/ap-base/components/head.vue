@@ -95,7 +95,6 @@ import { useI18n } from 'vue-i18n';
 import { ElMessage } from 'element-plus';
 import _s from 'underscore.string';
 import { logout, cookie, resource as resourceUtil } from 'utils';
-import { mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 's_head',
@@ -149,13 +148,8 @@ export default defineComponent({
     const errorPage = ref(G.errorPage || '/error');
 
     /* computed */
-    const getLinkResource = computed(() => {
-      mapGetters(['getLinkResource']);
-    });
-
-    const getLoginInfo = computed(() => {
-      mapGetters(['getLoginInfo']);
-    });
+    const getLinkResource = computed(() => store.state.linkResource);
+    const getLoginInfo = computed(() => store.getters.getLoginInfo);
 
     /* methods */
     //点击链接资源

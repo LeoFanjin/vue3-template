@@ -22,21 +22,18 @@
 <script>
 import { defineComponent, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { mapGetters } from 'vuex';
+import { useStore } from 'vuex';
 
 export default defineComponent({
   name: 's_ribbon',
-  computed: {
-    ...mapGetters(['getCurrentResource'])
-  },
   setup() {
-    const router = useRouter(),
+    const store = useStore(),
+      router = useRouter(),
       route = useRoute();
 
     /* computed */
-    /* const getCurrentResource = computed(() => {
-      mapGetters(['getCurrentResource']);
-    }); */
+    const getCurrentResource = computed(() => store.state.currentResource);
+    // const getCurrentResource = computed(() => store.getters.getCurrentResource);
 
     /* methods */
     /* const goHome = () => {
@@ -54,6 +51,7 @@ export default defineComponent({
     };
 
     return {
+      getCurrentResource,
       goPage,
       refresh
     };

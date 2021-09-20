@@ -105,7 +105,7 @@ import {
   onMounted
 } from 'vue';
 import { useRouter } from 'vue-router';
-import { useStore, mapGetters } from 'vuex';
+import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 import { lang as langUtils } from 'utils';
 import md5 from 'md5';
@@ -133,12 +133,8 @@ export default defineComponent({
     });
 
     /* computed */
-    const getLoginInfo = computed(() => {
-      mapGetters(['getLoginInfo']);
-    });
-    const getFullLoading = computed(() => {
-      mapGetters(['getFullLoading']);
-    });
+    const getLoginInfo = computed(() => store.getters.getLoginInfo);
+    const getFullLoading = computed(() => store.state.fullLoading);
     const loginDisabledStatus = computed(() => {
       if (
         state.formLogin.userAccount &&
