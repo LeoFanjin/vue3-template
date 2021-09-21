@@ -6,8 +6,8 @@ import { login } from './login';
 /**
  * 指令插件
  */
-var Directives = {};
-Directives.install = function(Vue) {
+const Directives = {};
+Directives.install = function (Vue) {
   // 权限验证指令
   Vue.directive('permissions', permissions);
   // 按钮点击动画

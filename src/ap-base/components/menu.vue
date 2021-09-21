@@ -8,7 +8,7 @@
   <div class="app-side-nav">
     <div class="app-side-nav__nav">
       <div class="app-side-nav-fold" @click="shrinkage">
-        <i v-if="!is_collapsed" class="icon iconfont icon-ap-navopen"></i>
+        <i v-if="!isCollapsed" class="icon iconfont icon-ap-navopen"></i>
         <i v-else class="icon iconfont icon-ap-navclose"></i>
       </div>
       <ul :style="{ height: $store.state.min_height + 'px' }">
@@ -24,7 +24,7 @@
           >
             <b
               v-if="
-                !is_collapsed &&
+                !isCollapsed &&
                 item.children &&
                 item.children.length > 0 &&
                 !item.open
@@ -34,7 +34,7 @@
             ></b>
             <b
               v-if="
-                !is_collapsed &&
+                !isCollapsed &&
                 item.children &&
                 item.children.length > 0 &&
                 item.open
@@ -49,7 +49,7 @@
           <transition name="slide" mode="out-in">
             <ul
               v-if="item.children && item.children.length > 0 && item.open"
-              :style="{ left: is_collapsed ? '90%' : '100%' }"
+              :style="{ left: isCollapsed ? '90%' : '100%' }"
             >
               <li
                 v-for="cItem in item.children"
@@ -78,113 +78,40 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { defineComponent, ref, computed, watch, onMounted } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter, useRoute } from 'vue-router';
 import _s from 'underscore.string';
-import uuid from 'uuid';
 
-export default {
+export default defineComponent({
   name: 's_menu',
-  computed: {
-    ...mapGetters(['getResource', 'getLoginInfo']),
-    getFilteredResource() {
-      return this.getResource.filter((item) => !item.model && !item.isPersonal);
-    }
-  },
-  data() {
-    return {
-      is_collapsed: false,
-      title: G.title
-    };
-  },
-  watch: {
-    $route: function (to) {
+  setup() {
+    const store = useStore(),
+      router = useRouter(),
+      route = useRoute();
+
+    /* data */
+    const isCollapsed = ref(false);
+
+    /* computed */
+    const getLoginInfo = computed(() => store.getters.getLoginInfo);
+    const getResource = computed(() => store.getters.getResource);
+    const getFilteredResource = computed(() =>
+      store.getters.getResource.filter(
+        (item) => !item.model && !item.isPersonal
+      )
+    );
+
+    /* watch */
+    watch(route, (to) => {
       if (!to.query.n) {
-        this.authFilter(to);
+        authFilter(to);
       }
-    }
-  },
-  created() {
-    var self = this;
+    });
 
-    if (self.$store.state.resource && self.$store.state.resource.length === 0) {
-      self.$store
-        .dispatch('queryMyResources', { system_code: G.system_code, tree: 1 })
-        .then((data) => {
-          var to = self.$route;
-
-          if (data.length > 0) {
-            data = _.chain(data)
-              .map((item) => {
-                return item.resourceCodeUrl;
-              })
-              .compact()
-              .value();
-            // 是否包含home
-            var isContainsHome = _.contains(data, G.homePage);
-
-            if (
-              G.homePage === to.path &&
-              G.homePage !== '/home' &&
-              !isContainsHome &&
-              data[0]
-            ) {
-              to = {
-                path: data[0],
-                fullPath: data[0]
-              };
-            }
-          }
-          self.authFilter(to);
-        })
-        .catch(function () {
-          var to = self.$route;
-          self.authFilter(to);
-        });
-    } else {
-      self.$store.commit('SET_SHOW_CONTENT', true);
-      var to = self.$route;
-      self.authFilter(to);
-    }
-  },
-  mounted() {
-    this.init();
-  },
-  methods: {
-    init() {
-      var self = this;
-      document.querySelector('body').classList.remove('app-nav-collapsed');
-      this.is_collapsed = false;
-
-      var clientWidth = String(document.documentElement.clientWidth);
-      self.widthControl(clientWidth);
-
-      /* $(window).resize(function () {
-          clientWidth = String(document.documentElement.clientWidth);
-          self.widthControl(clientWidth);
-        }); */
-    },
-    widthControl(width) {
-      if (!this.is_collapsed && width <= 960) {
-        this.closeNav();
-      } else if (this.is_collapsed && width > 960) {
-        this.openNav();
-      }
-    },
-    openNav() {
-      document.querySelector('body').classList.remove('app-nav-collapsed');
-      this.is_collapsed = false;
-    },
-    closeNav() {
-      document.querySelector('body').classList.add('app-nav-collapsed');
-      this.is_collapsed = true;
-    },
-    /* 收缩nav */
-    shrinkage() {
-      this.is_collapsed ? this.openNav() : this.closeNav();
-    },
-
-    authFilter(path, fullPath) {
-      var to = {};
+    /* methods */
+    const authFilter = (path, fullPath) => {
+      let to = {};
 
       if (!_.isObject(path)) {
         to.path = path;
@@ -193,12 +120,12 @@ export default {
         to = path;
       }
       if (to && to.path) {
-        var flag = false;
+        let flag = false;
 
-        if (_.contains(this.$store.state.auth_exception, to.path)) {
+        if (_.contains(store.state.auth_exception, to.path)) {
           flag = true;
         } else {
-          _.each(this.getResource, (resource) => {
+          _.each(getResource.value, (resource) => {
             if (resource.path && _s(to.fullPath).startsWith(resource.path)) {
               flag = true;
             }
@@ -214,47 +141,21 @@ export default {
         /* 如果没有资源菜单页面及其下级页面之外的页面，不用注释这里的判断 */
         /* --BEGIN-- */
         // if ((flag || (to.path === "/home" && G.homeLocation))) {
-        this.activeMenu(to.fullPath);
+        activeMenu(to.fullPath);
         // } else {
         // this.activeMenu('/404');
         // this.$router.replace({path: '/404'});
         // }
         /* --END-- */
       }
-    },
-    /* 展开目录 */
-    toggleMenu(resourceId, event) {
-      var self = this;
+    };
 
-      if (resourceId) {
-        _.each(this.getResource, (resource) => {
-          if (
-            resource.children &&
-            resource.children.length > 0 &&
-            resourceId === resource.id
-          ) {
-            resource.open = !resource.open;
-
-            _.each(resource.children, (cr) => {
-              cr.hide = !resource.open;
-            });
-          } else if (resource.path && resourceId === resource.id) {
-            self.authFilter(resource.path, resource.path);
-          } else {
-            resource.open = false;
-            _.each(resource.children, (cr) => {
-              cr.hide = true;
-            });
-          }
-        });
-      }
-    },
-    /** 选中目录 **/
-    activeMenu(fullPath, event) {
-      var currentResource = {};
+    // 选中目录
+    const activeMenu = (fullPath, event) => {
+      let currentResource = {};
 
       if (fullPath && !event) {
-        var cResource = this.$store.state.currentResource;
+        let cResource = store.state.currentResource;
 
         if (
           !cResource ||
@@ -262,9 +163,9 @@ export default {
           !(fullPath === cResource.path) ||
           !event
         ) {
-          var path = '';
+          let path = '';
 
-          _.each(this.getResource, (resource) => {
+          _.each(getResource.value, (resource) => {
             if (resource.path && _s(fullPath).startsWith(resource.path)) {
               currentResource = {
                 id: resource.id,
@@ -318,7 +219,7 @@ export default {
             return paths;
           };
 
-          let routes = this.$router.options.routes;
+          let routes = router.options.routes;
           let routePaths = getAllPath(routes, '');
 
           /* 如果没有资源页面及其下级页面之外的页面，这几行可以去掉 */
@@ -332,18 +233,129 @@ export default {
           }
           /* --END-- */
           if (!_.contains(routePaths, path)) {
-            this.$store.dispatch('setCurrentResource', currentResource);
-            this.$router.replace({ path: '/404' });
+            store.dispatch('setCurrentResource', currentResource);
+            router.replace({ path: '/404' });
           } else if (path) {
-            this.$store.dispatch('setCurrentResource', currentResource);
-            this.$router.push({ path: fullPath });
+            store.dispatch('setCurrentResource', currentResource);
+            router.push({ path: fullPath });
           } else if (fullPath === '/404') {
-            this.$store.dispatch('setCurrentResource', currentResource);
-            this.$router.replace({ path: fullPath });
+            store.dispatch('setCurrentResource', currentResource);
+            router.replace({ path: fullPath });
           }
         }
       }
+    };
+
+    const widthControl = (width) => {
+      if (!isCollapsed.value && width <= 960) {
+        closeNav();
+      } else if (isCollapsed.value && width > 960) {
+        openNav();
+      }
+    };
+    const openNav = () => {
+      document.querySelector('body').classList.remove('app-nav-collapsed');
+      isCollapsed.value = false;
+    };
+    const closeNav = () => {
+      document.querySelector('body').classList.add('app-nav-collapsed');
+      isCollapsed.value = true;
+    };
+    // 收缩nav
+    const shrinkage = () => {
+      isCollapsed.value ? openNav() : closeNav();
+    };
+    // 展开目录
+    const toggleMenu = (resourceId, event) => {
+      if (resourceId) {
+        _.each(getResource.value, (resource) => {
+          if (
+            resource.children &&
+            resource.children.length > 0 &&
+            resourceId === resource.id
+          ) {
+            resource.open = !resource.open;
+
+            _.each(resource.children, (cr) => {
+              cr.hide = !resource.open;
+            });
+          } else if (resource.path && resourceId === resource.id) {
+            authFilter(resource.path, resource.path);
+          } else {
+            resource.open = false;
+            _.each(resource.children, (cr) => {
+              cr.hide = true;
+            });
+          }
+        });
+      }
+    };
+
+    const init = () => {
+      document.querySelector('body').classList.remove('app-nav-collapsed');
+      isCollapsed.value = false;
+
+      let clientWidth = String(document.documentElement.clientWidth);
+      widthControl(clientWidth);
+
+      window.onresize = function () {
+        clientWidth = String(document.documentElement.clientWidth);
+        widthControl(clientWidth);
+      };
+    };
+
+    /* mounted */
+    onMounted(() => {
+      init();
+    });
+
+    /* created */
+    if (store.state.resource && store.state.resource.length === 0) {
+      store
+        .dispatch('queryMyResources', { system_code: G.system_code, tree: 1 })
+        .then((data) => {
+          let to = route;
+
+          if (data.length > 0) {
+            data = _.chain(data)
+              .map((item) => {
+                return item.resourceCodeUrl;
+              })
+              .compact()
+              .value();
+            // 是否包含home
+            let isContainsHome = _.contains(data, G.homePage);
+
+            if (
+              G.homePage === to.path &&
+              G.homePage !== '/home' &&
+              !isContainsHome &&
+              data[0]
+            ) {
+              to = {
+                path: data[0],
+                fullPath: data[0]
+              };
+            }
+          }
+          authFilter(to);
+        })
+        .catch(() => {
+          authFilter(route);
+        });
+    } else {
+      store.commit('SET_SHOW_CONTENT', true);
+      authFilter(route);
     }
+
+    return {
+      isCollapsed,
+      getLoginInfo,
+      // getResource,
+      getFilteredResource,
+      shrinkage,
+      toggleMenu
+    };
   }
-};
+});
 </script>

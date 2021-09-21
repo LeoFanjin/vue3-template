@@ -1,7 +1,7 @@
 /**
  * button
  */
-var button = {
+const button = {
   inserted: function(el) {
     try {
       jQuery(el).rippleria();

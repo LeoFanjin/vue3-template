@@ -1,8 +1,8 @@
 /**
  * button
  */
-var tip = {
-  inserted: function(el, bind) {
+const tip = {
+  inserted: function (el, bind) {
     try {
       if (bind.expression) {
         // $(el).attr("title", bind.expression);

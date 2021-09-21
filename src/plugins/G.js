@@ -14,7 +14,7 @@ Object.assign(G, appConfig, {
   options_key: 'sinosoft_options', // 操作 缓存 Key
   lang_key: 'sinosoft_lang', // 语言 缓存 Key
   autonomously: false,
-  sys_sign: 'system_sign',
+  sys_sign: 'system_sign_vue3',
   errorPage: '/error',
   lang: 'zh',
   token: null,

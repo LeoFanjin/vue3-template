@@ -28,7 +28,7 @@ export const queryMyResources = ({ commit }, params) => {
     url: '/ap-system/getUserResourceList.do',
     data: params
   };
-  return Axios.post(param).then(function (data) {
+  return Axios.post(param).then((data) => {
     if (data) {
       commit('SET_RESOURCE', data);
       commit('SET_SHOW_CONTENT', true);

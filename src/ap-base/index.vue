@@ -17,34 +17,39 @@
 import sHead from './components/head';
 import sMenu from './components/menu';
 import sRibbon from './components/ribbon';
-// import { mapGetters } from 'vuex';
+import { onMounted } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   name: 'app',
-  // computed: mapGetters(['getFullLoading']),
   components: {
     sHead,
     sMenu,
     sRibbon
   },
-  created() {
-    this.initStyle();
-    // this.initDict();
-  },
-  methods: {
-    initDict() {
-      this.$store.dispatch('initDict');
-    },
-    initStyle() {
-      var self = this;
-      var minHeight = String(document.documentElement.clientHeight - 100);
-      self.$store.dispatch('setMinHeight', minHeight);
+  setup() {
+    const store = useStore();
 
-      /* $(window).resize(function () {
+    /* methods */
+    const initDict = () => {
+      store.dispatch('initDict');
+    };
+    const initStyle = () => {
+      let minHeight = String(document.documentElement.clientHeight - 100);
+      store.dispatch('setMinHeight', minHeight);
+
+      window.onresize = function () {
         minHeight = String(document.documentElement.clientHeight - 100);
-        self.$store.dispatch('setMinHeight', minHeight);
-      }); */
-    }
+        store.dispatch('setMinHeight', minHeight);
+      };
+    };
+
+    /* mounted */
+    onMounted(() => {
+      initStyle();
+    });
+
+    initDict();
   }
 };
 </script>

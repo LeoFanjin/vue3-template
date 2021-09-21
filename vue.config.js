@@ -22,6 +22,12 @@ module.exports = {
     config.resolve.modules.push('common_modules');
     // 初始配置里已有类型：'.mjs', '.js', '.jsx', '.vue', '.json', '.wasm'
     config.resolve.extensions.push('.ts', '.tsx');
+    // 解决出现模块找不到的问题
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: 'javascript/auto'
+    });
     config.plugins.push(
       new webpack.ProvidePlugin({
         _: 'underscore',

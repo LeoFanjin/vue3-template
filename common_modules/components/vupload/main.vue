@@ -21,10 +21,12 @@
       :file-list="fileList"
     >
       <el-button size="mini" type="primary">点击上传</el-button>
-      <div slot="tip" class="el-upload__tip">{{ upload.tip }}</div>
+      <template #tip>
+        <div class="el-upload__tip">{{ upload.tip }}</div>
+      </template>
     </el-upload>
 
-    <el-dialog :visible.sync="dialogVisible">
+    <el-dialog v-model="dialogVisible">
       <img class="img-preview" :src="dialogImageUrl" alt="" />
     </el-dialog>
   </div>

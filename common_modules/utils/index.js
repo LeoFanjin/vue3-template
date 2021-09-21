@@ -23,5 +23,3 @@ export const constant = constantUtil;
 export const lang = langxUtil;
 export const cookie = cookieUtil;
 export const myBrowser = myBrowserUtil;
-export const dialog = require('./dialog');
-export const tree = require('./tree');

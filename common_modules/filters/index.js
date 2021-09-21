@@ -1,6 +1,6 @@
 import _ from 'underscore';
 
-var filters = {
+const filters = {
   /**
    * 数据字典过滤器
    * @param array [{code: '', name: ''}];
@@ -8,10 +8,10 @@ var filters = {
    * @returns {*|string}
    */
   dictFilter(array, code) {
-    var result = code || '';
+    let result = code || '';
 
     if (_.isArray(array) && code) {
-      var obj = _.findWhere(array, { code: code });
+      let obj = _.findWhere(array, { code: code });
       result = obj ? obj.name : '';
     }
 
@@ -22,7 +22,7 @@ var filters = {
 /**
  * 过滤器插件
  */
-var Filters = {};
+const Filters = {};
 Filters.install = function(Vue) {
   /* 过滤器 */
   Vue.prototype.$filters = filters;

@@ -6,7 +6,7 @@ export const getCurrentResource = (state) => {
 
 export const getResource = (state) => {
   if (!_.findWhere(state.resource, { path: '/home' }) && G.homeLocation) {
-    var home = {
+    const home = {
       id: '999',
       isActive: false,
       name: '首页',

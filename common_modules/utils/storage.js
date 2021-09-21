@@ -4,16 +4,16 @@
     localStorage.setItem('getSessionStorage', Date.now());
   }
 
-  var storageEvent = event => {
+  const storageEvent = event => {
     if (event.key === 'getSessionStorage') {
       // 已存在的标签页会收到这个事件
       localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
       localStorage.removeItem('sessionStorage');
     } else if (event.key === 'sessionStorage' && sessionStorage.length < 2) {
       // 新开启的标签页会收到这个事件
-      var data = JSON.parse(event.newValue);
+      let data = JSON.parse(event.newValue);
 
-      for (var key in data) {
+      for (let key in data) {
         sessionStorage.setItem(key, data[key]);
       }
     }
@@ -33,9 +33,9 @@
   }
 })();
 
-var storage = sessionStorage;
+const storage = sessionStorage;
 
-var Storage = {
+const Storage = {
   // 存sessionStorage
   set(key, value) {
     if (typeof value === 'object') {
@@ -45,7 +45,7 @@ var Storage = {
   },
   // 获取sessionStorage
   get(key) {
-    var value = storage.getItem(key);
+    let value = storage.getItem(key);
     try {
       return JSON.parse(value);
     } catch (e) {

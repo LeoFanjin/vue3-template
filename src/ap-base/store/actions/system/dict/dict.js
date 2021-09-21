@@ -15,7 +15,7 @@ export const queryDataItemByType = (store, params) => {
         data: params
       };
 
-      return Axios.post(param).then(function (data) {
+      return Axios.post(param).then((data) => {
         if (data && data.length > 0) {
           store.commit('SET_DICT', { key: params.libraryCode, value: data });
         }
@@ -76,26 +76,6 @@ export const removeDataItemById = ({ commit }, params) => {
   };
   return Axios.post(param);
 };
-
-/* export const initDict = ({ commit, state }, params) => {
-  if (!state.isInit) {
-    const param = {
-      url: G.base_api + '/ap-system/findLibrary.do',
-      dataType: 'json',
-      commit: commit,
-      data: params
-    };
-
-    return API.post(param).then(function(data) {
-      if (_.isArray(data)) {
-        commit('INIT_DICT', data);
-        return Promise.resolve(null);
-      }
-    });
-  } else {
-    return Promise.resolve(null);
-  }
-}; */
 
 export const initDict = ({ commit, state }, params) => {
   if (!state.isInit) {

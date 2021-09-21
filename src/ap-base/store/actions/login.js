@@ -8,7 +8,7 @@ export const login = ({ commit }, formLogin) => {
     commit: commit
   };
 
-  return Axios.post(param).then(function (data) {
+  return Axios.post(param).then((data) => {
     if (data) {
       // data = {data: data};
       if (data.data.userHeadEntity && !_.isEmpty(data.data.userHeadEntity)) {
@@ -36,7 +36,7 @@ export const logout = ({ commit }) => {
     commit: commit
   };
 
-  return Axios.basePost(params).then(function () {
+  return Axios.basePost(params).then(() => {
     commit('LOGOUT_USER');
     return Promise.resolve(null);
   });

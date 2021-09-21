@@ -1,12 +1,12 @@
 import { Storage as StorageUtil } from './storage';
 import { cookie as cookieUtil } from './cookie';
 import { getAgent as getAgentUtil } from './agent';
-var getAgent = getAgentUtil;
-var cookie = cookieUtil;
-var Storage = StorageUtil;
+const getAgent = getAgentUtil;
+const cookie = cookieUtil;
+const Storage = StorageUtil;
 
 const getURI = (loginPage, jump) => {
-  var uri = loginPage;
+  let uri = loginPage;
   if (jump && loginPage.indexOf('?') !== -1) {
     uri += '&jump=' + encodeURIComponent(jump);
   } else if (jump) {

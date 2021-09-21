@@ -13,7 +13,7 @@ import * as systemPermissionAction from './system/auth/permission';
 import * as systemRoleAction from './system/auth/role';
 import * as systemUserAction from './system/user/user';
 
-var actions = {};
+let actions = {};
 
 actions = _.extend(actions, baseActions);
 actions = _.extend(actions, loginActions);

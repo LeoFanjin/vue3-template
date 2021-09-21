@@ -3,7 +3,7 @@ import _s from 'underscore.string';
 import { constant } from './constant';
 
 function getChildren(parentId, resources) {
-  var child = [];
+  const child = [];
 
   _.each(resources, function(resource) {
     if (resource.parentId === parentId) {
@@ -60,7 +60,7 @@ export const resource = {
     }
 
     if (fullPath && !_s.startsWith(fullPath, errorPage)) {
-      var cResource = obj.$store.state.currentResource;
+      let cResource = obj.store.state.currentResource;
 
       if (
         !cResource ||
@@ -68,27 +68,27 @@ export const resource = {
         !(fullPath === cResource.path) ||
         !event
       ) {
-        var path = '';
+        let path = '';
 
-        _.each(obj.$store.getters.getResource, function(resource) {
+        _.each(obj.store.getters.getResource, function(resource) {
           cf(resource);
         });
 
         // if (_.isEmpty(currentResource)) {
-        _.each(obj.$store.getters.getLinkResource, function(resource) {
+        _.each(obj.store.getters.getLinkResource, function(resource) {
           cf(resource);
         });
         // }
 
         // 判断资源状态
         if (!_.isEmpty(currentResource) && currentResource.status !== '1') {
-          obj.$router.push({
+          obj.router.push({
             path: errorPage,
             query: { status: currentResource.status }
           });
         } else if (path) {
-          obj.$store.dispatch('setCurrentResource', currentResource);
-          obj.$router.push({ path: fullPath });
+          obj.store.dispatch('setCurrentResource', currentResource);
+          obj.router.push({ path: fullPath });
         }
       }
     }

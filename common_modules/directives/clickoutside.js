@@ -3,8 +3,8 @@ const nodeList = [];
 const ctx = '@@clickoutsideContext';
 
 !Vue.prototype.$isServer &&
-  $(document).on('click', e => {
-    nodeList.forEach(node => node[ctx].documentHandler(e));
+  $(document).on('click', (e) => {
+    nodeList.forEach((node) => node[ctx].documentHandler(e));
   });
 /**
  * v-clickoutside
@@ -17,7 +17,7 @@ const ctx = '@@clickoutsideContext';
 export const clickoutside = {
   bind(el, binding, vnode) {
     const id = nodeList.push(el) - 1;
-    const documentHandler = function(e) {
+    const documentHandler = function (e) {
       if (
         !vnode.context ||
         el.contains(e.target) ||

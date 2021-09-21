@@ -2,6 +2,7 @@ import Promise from 'bluebird';
 import _ from 'underscore';
 import { logout } from './logout';
 import { lang } from '../../src/ap-base/lang';
+import { ElNotification } from 'element-plus';
 const i18n = lang[`${G.lang}`];
 const Ajax = {};
 
@@ -13,7 +14,7 @@ const Ajax = {};
  *    message: ''
  * }
  */
-Ajax.dealSuccess = res => {
+Ajax.dealSuccess = (res) => {
   try {
     if (res.status === 1 || res.status === '1') {
       if (res.subdata && _.isObject(res.subdata)) {
@@ -29,7 +30,7 @@ Ajax.dealSuccess = res => {
       }
       // 仅用于注册后直接登录状态
     } else if (res.status === 101 || res.status === '101') {
-      var data = res.data ? res.data : res;
+      let data = res.data ? res.data : res;
       return Promise.resolve({ data: data, status: 101 }, res);
     } else {
       return Ajax.generateError(res.message);
@@ -41,8 +42,7 @@ Ajax.dealSuccess = res => {
 /**
  * ajax请求异常处理
  */
-Ajax.dealCommonError = res => {
-  console.log('res', res);
+Ajax.dealCommonError = (res) => {
   try {
     if (res.status === 403 || res.status === 401) {
       logout();
@@ -75,7 +75,7 @@ Ajax.dealCommonError = res => {
  */
 Ajax.showMessage = (message, timeout = 2000) => {
   if (message) {
-    G.$notify.error(message);
+    ElNotification.error(message);
   }
 };
 
@@ -83,7 +83,7 @@ Ajax.showMessage = (message, timeout = 2000) => {
  * 根据服务器编码,抛出错误信息异常
  * @param code 编码
  */
-Ajax.generateError = code => {
+Ajax.generateError = (code) => {
   return Promise.reject(i18n.server.result[code] || code);
 };
 

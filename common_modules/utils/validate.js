@@ -1,4 +1,4 @@
-let lang = {
+const lang = {
   zh: {
     name: '只能是汉字、字母、数字、下划线',
     code: '只能是字母、数字、下划线',
@@ -40,16 +40,16 @@ let lang = {
   }
 }[`${G.lang}`];
 
-var Validate = {
+const Validate = {
   /* 用户名验证 */
-  name: function(rule, value, callback) {
+  name: function (rule, value, callback) {
     if (!/^(\w|[\u4e00-\u9fa5])+$/.test(value)) {
       callback(new Error(lang.name));
     } else {
       callback();
     }
   },
-  code: function(rule, value, callback) {
+  code: function (rule, value, callback) {
     if (!/^\w+$/.test(value)) {
       callback(new Error(lang.code));
     } else {
@@ -57,7 +57,7 @@ var Validate = {
     }
   },
   /* 两边不能有空格 */
-  trim: function(rule, value, callback) {
+  trim: function (rule, value, callback) {
     if (!value || value.trim() === value) {
       callback();
     } else {
@@ -65,7 +65,7 @@ var Validate = {
     }
   },
   /* 手机号码验证 */
-  phone: function(rule, value, callback) {
+  phone: function (rule, value, callback) {
     if (!value || /^1[3456789]\d{9}$/.test(value)) {
       callback();
     } else {
@@ -73,7 +73,7 @@ var Validate = {
     }
   },
   /* 联系方式验证 */
-  telephone: function(rule, value, callback) {
+  telephone: function (rule, value, callback) {
     if (!value || /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/.test(value)) {
       callback();
     } else {
@@ -82,14 +82,14 @@ var Validate = {
   },
   /* 身份证验证 */
   identity: (rule, value, callback) => {
-    var personId = value;
+    let personId = value;
 
     if (!rule.required && !value) {
       return callback();
     }
 
     setTimeout(() => {
-      var message = IdentityCodeValid(personId);
+      let message = IdentityCodeValid(personId);
       if (!message.pass) {
         callback(new Error('' + message.tip));
       } else {
@@ -136,7 +136,7 @@ var Validate = {
 
 /** 验证规则 **/
 function IdentityCodeValid(code) {
-  var city = {
+  const city = {
     11: '北京',
     12: '天津',
     13: '河北',
@@ -173,7 +173,7 @@ function IdentityCodeValid(code) {
     82: '澳门',
     91: '国外'
   };
-  var tip = '',
+  let tip = '',
     pass = true;
   if (!code || !/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(code)) {
     tip = lang.identity_format_error;
@@ -186,18 +186,18 @@ function IdentityCodeValid(code) {
     code = code.split('');
     // ∑(ai×Wi)(mod 11)
     // 加权因子
-    var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+    const factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
     // 校验位
-    var parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2];
-    var sum = 0;
-    var ai = 0;
-    var wi = 0;
-    for (var i = 0; i < 17; i++) {
+    const parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2];
+    let sum = 0,
+      ai = 0,
+      wi = 0;
+    for (let i = 0; i < 17; i++) {
       ai = code[i];
       wi = factor[i];
       sum += ai * wi;
     }
-    var last = parity[sum % 11];
+    // let last = parity[sum % 11];
     if (parity[sum % 11] != code[17]) {
       tip = lang.identity_check_error;
       pass = false;

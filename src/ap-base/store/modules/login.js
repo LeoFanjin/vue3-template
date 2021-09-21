@@ -1,13 +1,13 @@
 import { Storage, cookie } from 'utils';
 import _ from 'underscore';
 
-var user,
+let user,
   options,
   token = G.token || {};
 /* if (!G.autonomously) {
   user = G.USER_INFO || {};
   options = G.OPTIONS || {};
-  var token = G.token || {};
+  let token = G.token || {};
   if (!token) {
     token = null;
   }
@@ -45,18 +45,18 @@ export const loginMutation = {
    */
   ['SET_USER_INFO'](state, userInfo) {
     state.loginInfo = userInfo;
-    if (G.autonomously) {
-      Storage.set(G.storage_key, userInfo);
-    }
+    // if (G.autonomously) {
+    Storage.set(G.storage_key, userInfo);
+    // }
   },
   /**
    * 修改用户信息
    */
   ['UPDATE_MY_INFO'](state, userInfo) {
     state.loginInfo = _.extend(state.loginInfo, userInfo);
-    if (G.autonomously) {
-      Storage.set(G.storage_key, state.loginInfo);
-    }
+    // if (G.autonomously) {
+    Storage.set(G.storage_key, state.loginInfo);
+    // }
   },
   /**
    * 设置用户头像
@@ -67,9 +67,9 @@ export const loginMutation = {
       typeof userImgPath === 'string'
     ) {
       state.loginInfo.userHeadAddress = userImgPath;
-      if (G.autonomously) {
-        Storage.set(G.storage_key, state.loginInfo);
-      }
+      // if (G.autonomously) {
+      Storage.set(G.storage_key, state.loginInfo);
+      // }
     }
   },
   /**
@@ -78,9 +78,9 @@ export const loginMutation = {
    */
   ['LOGIN'](state, userInfo) {
     state.loginInfo = userInfo;
-    if (G.autonomously) {
-      Storage.set(G.storage_key, userInfo);
-    }
+    // if (G.autonomously) {
+    Storage.set(G.storage_key, userInfo);
+    // }
   },
   /**
    * 设置操作集
@@ -89,9 +89,9 @@ export const loginMutation = {
   ['SET_OPTIONS'](state, options) {
     // Storage.set(G.options_key, options);
     state.options = options;
-    if (G.autonomously) {
-      Storage.set(G.options_key, options);
-    }
+    // if (G.autonomously) {
+    Storage.set(G.options_key, options);
+    // }
   },
   /**
    * 设置TOKEN
@@ -107,14 +107,16 @@ export const loginMutation = {
    * 退出
    */
   ['LOGOUT_USER'](state) {
-    if (!G.autonomously) {
+    /* if (!G.autonomously) {
       G.token = null;
       state.options = {};
       state.token = null;
     } else {
       Storage.remove(G.storage_key);
       Storage.remove(G.options_key);
-    }
+    } */
+    Storage.remove(G.storage_key);
+    Storage.remove(G.options_key);
     state.loginInfo = {};
   }
 };

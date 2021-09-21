@@ -1,5 +1,5 @@
-var getCookie = function(name) {
-  var arr,
+const getCookie = function(name) {
+  let arr,
     reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
   arr = document.cookie.match(reg);
 
@@ -13,9 +13,9 @@ var getCookie = function(name) {
 export const cookie = {
   getCookie: getCookie,
   removeCookie(name) {
-    var exp = new Date();
+    let exp = new Date();
     exp.setTime(exp.getTime() - 1);
-    var cVal = getCookie(name);
+    let cVal = getCookie(name);
     if (cVal !== null) {
       document.cookie = name + '=' + cVal + ';expires=' + exp.toGMTString();
     }
