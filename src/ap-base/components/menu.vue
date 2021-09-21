@@ -143,8 +143,8 @@ export default defineComponent({
         // if ((flag || (to.path === "/home" && G.homeLocation))) {
         activeMenu(to.fullPath);
         // } else {
-        // this.activeMenu('/404');
-        // this.$router.replace({path: '/404'});
+        // activeMenu('/404');
+        // router.replace({path: '/404'});
         // }
         /* --END-- */
       }

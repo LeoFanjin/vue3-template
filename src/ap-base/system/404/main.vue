@@ -72,11 +72,18 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    goHome() {
-      this.$router.push({ path: '/home' });
-    }
+import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
+export default defineComponent({
+  setup() {
+    const router = useRouter();
+    const goHome = () => {
+      router.push({ path: '/home' });
+    };
+
+    return {
+      goHome
+    };
   }
-};
+});
 </script>

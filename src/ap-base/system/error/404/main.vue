@@ -22,36 +22,46 @@
   <div id="page_404">
     <div class="content">
       <p>404</p>
-      <p>{{ $t('common.label.not_found') }}</p>
+      <p>{{ t('common.label.not_found') }}</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+export default defineComponent({
   data() {
     return {
       path: ''
     };
   },
-  created() {
-    var self = this,
-      query = self.$route.query;
+  setup() {
+    const router = useRouter(),
+      route = useRoute(),
+      { t } = useI18n();
+
+    /* methods */
+    const refresh = (path) => {
+      router.replace({
+        path: path + ''
+      });
+    };
+
+    const query = route.query;
     if (
       query.path != undefined &&
       query.path != null &&
       query.path != '' &&
       query.path != {}
     ) {
-      self.refresh(query.path);
+      refresh(query.path);
     }
+    return {
+      t
+    };
   },
-  methods: {
-    refresh(path) {
-      this.$router.replace({
-        path: path + ''
-      });
-    }
-  }
-};
+  created() {}
+});
 </script>
