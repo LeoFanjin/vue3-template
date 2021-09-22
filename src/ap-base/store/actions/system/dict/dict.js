@@ -85,7 +85,7 @@ export const initDict = ({ commit, state }, params) => {
       data: params
     };
 
-    Axios.post(param).then((data) => {
+    return Axios.post(param).then((data) => {
       if (_.isArray(data)) {
         commit('INIT_DICT', data);
         return Promise.resolve(null);

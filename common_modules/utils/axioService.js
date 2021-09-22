@@ -32,7 +32,7 @@ const i18n = lang[`${G.lang}`];
 }
 */
 
-const Axios = {
+export const Axios = {
   basePost: (config) => {
     const service = axios.create({
       method: 'post',
@@ -112,11 +112,12 @@ const Axios = {
       ],
       // `transformResponse` allows changes to the response data to be made before
       // it is passed to then/catch
-      transformResponse: [
+      // v0.21.4下要取消这个transformResponse，不然返回数据会变成json字符串，原因未知
+      /* transformResponse: [
         (data) => {
           return data;
         }
-      ],
+      ], */
       // `paramsSerializer` is an optional function in charge of serializing `params`
       // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
       // paramsSerializer: (params) => {
@@ -129,6 +130,13 @@ const Axios = {
       // `responseEncoding` indicates encoding to use for decoding responses (Node.js only)
       // Note: Ignored for `responseType` of 'stream' or client-side requests
       responseEncoding: 'utf8'
+      // `validateStatus` defines whether to resolve or reject the promise for a given
+      // HTTP response status code. If `validateStatus` returns `true` (or is set to `null`
+      // or `undefined`), the promise will be resolved; otherwise, the promise will be
+      // rejected.
+      /* validateStatus: (status) => {
+        return status >= 200 && status < 300; // default
+      } */
     });
     service.defaults.headers['Content-Type'] =
       'application/x-www-form-urlencoded;charset=utf-8';
@@ -153,8 +161,33 @@ const Axios = {
     );
     // 响应拦截器
     service.interceptors.response.use(
+      /* 
+        {
+          // `data` is the response that was provided by the server
+          data: {},
+
+          // `status` is the HTTP status code from the server response
+          status: 200,
+
+          // `statusText` is the HTTP status message from the server response
+          statusText: 'OK',
+
+          // `headers` the HTTP headers that the server responded with
+          // All header names are lower cased and can be accessed using the bracket notation.
+          // Example: `response.headers['content-type']`
+          headers: {},
+
+          // `config` is the config that was provided to `axios` for the request
+          config: {},
+
+          // `request` is the request that generated this response
+          // It is the last ClientRequest instance in node.js (in redirects)
+          // and an XMLHttpRequest instance in the browser
+          request: {}
+        }
+      */
       (response) => {
-        let config = response.config;
+        const config = response.config;
         if (config.commit) config.commit('SET_FULL_LOADING', false);
         // Any status code that lie within the range of 2xx cause this function to trigger
         // Do something with response data
@@ -195,7 +228,7 @@ const Axios = {
 };
 
 const handleError = (error) => {
-  let config = error.config;
+  const config = error.config;
   if (config.commit) config.commit('SET_FULL_LOADING', false);
   if (
     error.code === 'ECONNABORTED' &&
@@ -228,5 +261,3 @@ const handleError = (error) => {
     ElNotification.error(res.data.message);
   }
 };
-
-export { Axios };

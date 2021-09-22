@@ -7,19 +7,22 @@ import {
   ElFormItem,
   ElLoading
 } from 'element-plus';
+// 样式全局引入
 // import 'element-plus/lib/theme-chalk/index.css';
+// 这个未知......
 import 'element-plus/lib/theme-chalk/base.css';
-import lang from 'element-plus/lib/locale/lang/zh-cn';
-import { setLocale } from 'element-plus/lib/locale';
+// 语言包
+import locale from 'element-plus/lib/locale/lang/zh-cn';
+// import { setLocale } from 'element-plus/lib/locale';
 
 export default (app) => {
-  // locale.use(lang);
-  setLocale(lang);
-  app.use(ElButton);
-  app.use(ElInput);
-  app.use(ElSelect);
-  app.use(ElDialog);
-  app.use(ElForm);
-  app.use(ElFormItem);
-  app.use(ElLoading);
+  // locale.use(locale);
+  // setLocale(locale);
+  app.use(ElButton, { locale });
+  app.use(ElInput, { locale });
+  app.use(ElSelect, { locale });
+  app.use(ElDialog, { locale });
+  app.use(ElForm, { locale });
+  app.use(ElFormItem, { locale });
+  app.use(ElLoading, { locale });
 };

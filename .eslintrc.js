@@ -26,6 +26,7 @@ module.exports = {
         functions: 'never'
       }
     ] // 禁止末尾强制逗号
+    // 'vue/no-multiple-template-root': 'off'
   },
   overrides: [
     {

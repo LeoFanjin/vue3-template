@@ -20,9 +20,12 @@ module.exports = {
   // publicPath: '/ap/web/',
   configureWebpack: (config) => {
     config.resolve.modules.push('common_modules');
+    // 解决vue-i18n警告
+    // You are running the esm-bundler build of vue-i18n. It is recommended to configure your bundler to explicitly replace feature flag globals with boolean literals to get proper tree-shaking in the final bundle.
+    config.resolve.alias['vue-i18n'] = 'vue-i18n/dist/vue-i18n.cjs.js';
     // 初始配置里已有类型：'.mjs', '.js', '.jsx', '.vue', '.json', '.wasm'
     config.resolve.extensions.push('.ts', '.tsx');
-    // 解决出现模块找不到的问题
+    // 解决出现vueuse模块找不到的问题
     config.module.rules.push({
       test: /\.mjs$/,
       include: /node_modules/,

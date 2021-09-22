@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { Storage, logout } from 'utils';
 // import Home from '../views/Home.vue';
 
 const routes = [
@@ -30,8 +31,8 @@ const routes = [
           )
       }
     ],
-    /* beforeEnter: (to, from, next) => {
-      let user_info = Storage.get(G.storage_key);
+    beforeEnter: (to, from, next) => {
+      const user_info = Storage.get(G.storage_key);
       if (to && to.path !== G.loginPage) {
         if (_.isEmpty(user_info)) {
           logout();
@@ -44,9 +45,10 @@ const routes = [
         } else {
           next();
         }
+      } else {
+        next();
       }
-      next();
-    }, */
+    },
     redirect: G.homePage
   },
   {
@@ -65,6 +67,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory('/ap/web'),
   routes
 });
 

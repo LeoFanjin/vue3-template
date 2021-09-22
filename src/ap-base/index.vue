@@ -4,7 +4,7 @@
     <sMenu></sMenu>
     <div
       class="app-content"
-      :style="{ 'min-height': $store.state.min_height - 10 + 'px' }"
+      :style="{ 'min-height': $store.state.min_height - 16 + 'px' }"
       v-if="$store.state.showContent"
     >
       <router-view></router-view>
@@ -49,7 +49,7 @@ export default {
       initStyle();
     });
 
-    initDict();
+    // initDict();
   }
 };
 </script>
