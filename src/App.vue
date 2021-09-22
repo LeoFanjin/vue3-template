@@ -1,11 +1,28 @@
 <template>
-  <router-view />
+  <!-- 全局设置element语言 -->
+  <el-config-provider :locale="locale">
+    <div key="app-wrapper" v-loading.fullscreen.lock="getFullLoading">
+      <router-view />
+    </div>
+  </el-config-provider>
 </template>
 
 <script>
-export default {
-  name: 'App'
-};
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
+// 语言包，默认为en
+import locale from 'element-plus/lib/locale/lang/zh-cn';
+export default defineComponent({
+  name: 'App',
+  setup() {
+    const store = useStore();
+    const getFullLoading = computed(() => store.getters.getFullLoading);
+    return {
+      locale,
+      getFullLoading
+    };
+  }
+});
 </script>
 
 <style lang="less">
