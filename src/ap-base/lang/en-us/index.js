@@ -14,7 +14,7 @@ import myAuth from './personal/myAuth';
 import securitySetting from './personal/securitySetting';
 import userInfo from './personal/userInfo';
 
-var zh = {};
+let zh = {};
 zh = _.extend(zh, common);
 zh = _.extend(zh, head);
 zh = _.extend(zh, server);

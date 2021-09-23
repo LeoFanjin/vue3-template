@@ -9,7 +9,7 @@ import dict from './system/dict';
 import organ from './system/organ';
 import resource from './system/resource';
 
-var zh = {};
+let zh = {};
 zh = _.extend(zh, common);
 zh = _.extend(zh, head);
 zh = _.extend(zh, server);

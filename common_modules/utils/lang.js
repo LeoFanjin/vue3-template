@@ -1,6 +1,6 @@
 import { Storage } from './storage';
 
-export const langx = {
+export const lang = {
   // 设置语言
   setLanguage($i18n, lang) {
     $i18n.locale.value = lang;
