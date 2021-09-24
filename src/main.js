@@ -9,12 +9,13 @@ import i18n from './i18n';
 import installElementPlus from './plugins/element';
 import jsonp from 'jsonp';
 import { Storage } from 'utils';
+import Directives from 'directives';
 import { ElMessage } from 'element-plus';
 
 // 非但点登录初始化Vue
 /* const app = createApp(App);
 installElementPlus(app);
-app.use(store).use(router).use(i18n).mount('#app'); */
+app.use(store).use(router).use(i18n).use(Directives).mount('#app'); */
 
 // 单点登录
 const GetQueryString = (name) => {
@@ -57,7 +58,7 @@ if (token) {
           const store = require('./store').default;
           const app = createApp(App);
           installElementPlus(app);
-          app.use(store).use(router).use(i18n).mount('#app');
+          app.use(store).use(router).use(i18n).use(Directives).mount('#app');
         } else {
           ElMessage.error(
             typeof results.message === 'string' ? err : '登录失败'
