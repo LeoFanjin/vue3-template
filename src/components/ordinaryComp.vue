@@ -1,3 +1,16 @@
+<template>
+  <div>
+    <div>{{ content }}</div>
+    <div>
+      <el-button
+        type="primary"
+        @click="() => emit('custom-click', 'you clicked me!')"
+      >
+        Click Me
+      </el-button>
+    </div>
+  </div>
+</template>
 <script>
 import { defineComponent } from 'vue';
 export default defineComponent({
@@ -8,7 +21,8 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
-    return () => (
+    return { emit };
+    /* return () => (
       <div>
         <div>{props.content}</div>
         <div>
@@ -20,7 +34,7 @@ export default defineComponent({
           </el-button>
         </div>
       </div>
-    );
+    ); */
   }
 });
 </script>

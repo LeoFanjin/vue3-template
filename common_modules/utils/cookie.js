@@ -1,4 +1,4 @@
-const getCookie = function(name) {
+function getCookie(name) {
   let arr,
     reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
   arr = document.cookie.match(reg);
@@ -8,10 +8,9 @@ const getCookie = function(name) {
   } else {
     return null;
   }
-};
+}
 
 export const cookie = {
-  getCookie: getCookie,
   removeCookie(name) {
     let exp = new Date();
     exp.setTime(exp.getTime() - 1);
