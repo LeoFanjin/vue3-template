@@ -1,46 +1,21 @@
-<template>
-  <!-- 全局设置element语言 -->
-  <el-config-provider :locale="locale">
-    <div key="app-wrapper" v-loading.fullscreen.lock="getFullLoading">
-      <router-view />
-    </div>
-  </el-config-provider>
-</template>
-
-<script>
-import { defineComponent, computed } from 'vue';
-import { useStore } from 'vuex';
-// 语言包，默认为en
-import locale from 'element-plus/lib/locale/lang/zh-cn';
-export default defineComponent({
-  name: 'App',
-  setup() {
-    const store = useStore();
-    const getFullLoading = computed(() => store.getters.getFullLoading);
-    return {
-      locale,
-      getFullLoading
-    };
-  }
-});
+<script setup>
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import HelloWorld from './components/HelloWorld.vue'
 </script>
 
-<style lang="less">
-:root {
-  ::-webkit-scrollbar-track-piece {
-    background-color: #f8f8f8;
-  }
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #e2e2e2;
-    background-clip: padding-box;
-    min-height: 28px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #bbb;
-  }
+<template>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Hello Vue 3 + Vite" />
+</template>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
