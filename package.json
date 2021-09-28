@@ -49,10 +49,20 @@
     "geckodriver": "^1.20.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "lint-staged": "^11.1.2",
     "prettier": "^2.2.1",
     "typescript": "~3.9.3",
     "vue-cli-plugin-element-plus": "0.0.13",
     "vue-jest": "^5.0.0-0",
     "webpack-bundle-analyzer": "^4.4.2"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
   }
 }

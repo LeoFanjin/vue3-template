@@ -1,6 +1,6 @@
 <style lang="less" scoped src="./style.less"></style>
 <script>
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent, ref, computed } from 'vue';
 export default defineComponent({
   render() {
     return (
