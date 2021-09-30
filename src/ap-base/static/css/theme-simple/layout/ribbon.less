@@ -1,0 +1,40 @@
+.app-ribbon {
+  position: fixed;
+  top: @app-head-height;
+  left: @app-side-nav-width;
+  right: 0;
+  z-index: 5;
+  height: @ribbon-height;
+  background-color: @ribbon-background-color;
+  transition: left .2s linear 0s;
+  .app-ribbon-curr-name {
+    padding: 0 15px;
+    color: @ribbon-name-font-color;
+    font-weight: @ribbon-name-font-weight;
+    font-size: @ribbon-name-font-size + 2;
+    line-height: @ribbon-height;
+  }
+  .app-ribbon-bread {
+    float: left;
+    padding: 0 15px;
+    list-style: none;
+    border-radius: 2px;
+    height: 100%;
+    li {
+      display: inline-block;
+      line-height: @ribbon-height;
+      font-weight: @ribbon-bread-font-weight;
+      font-size: @ribbon-bread-font-size;
+      color: @ribbon-bread-font-color;
+      &+li:before {
+        color: @ribbon-bread-font-color;
+        padding: 0 2px;
+        content: "/\00a0";
+      }
+      &.current-path{
+        color: #777777;
+      }
+    }
+  }
+  .clearfix;
+}

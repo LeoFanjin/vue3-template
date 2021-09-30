@@ -1,0 +1,43 @@
+.nav-variant(@nav-background-base, @nav-color-normal, @nav-color-active) {
+  @nav-minifyMenu-background: darken(saturate(@nav-background-base, 60%), 16%);
+  @nav-minifyMenu-color: #fff;
+
+  background-color: @nav-background-base;
+
+  .app-side-nav__nav {
+    > ul > li {
+      &.active {
+        &:not(.open) {
+          > a {
+            color: @nav-color-active;
+            > .icon, > .fa {
+              color: @nav-color-active;
+            }
+          }
+        }
+      }
+      > a {
+        color: @nav-color-normal;
+        &:hover {
+          color: @nav-color-active;
+        }
+      }
+      > ul > li {
+        &.active {
+          > a {
+            color: @nav-color-active;
+            > .icon, > .fa {
+              color: @nav-color-active;
+            }
+          }
+        }
+        > a {
+          color: @nav-color-normal;
+          &:hover {
+            color: @nav-color-active;
+          }
+        }
+      }
+    }
+  }
+}

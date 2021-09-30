@@ -1,0 +1,62 @@
+.text-ellipsis() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.transition(@pro:all,@dur:.2s,@fn:linear,@delay:0s) {
+  -webkit-transition-property: @pro;
+  -moz-transition-property: @pro;
+  -o-transition-property: @pro;
+  transition-property: @pro;
+
+  -webkit-transition-duration: @dur;
+  -moz-transition-duration: @dur;
+  -o-transition-duration: @dur;
+  transition-duration: @dur;
+
+  -webkit-transition-timing-function: @fn;
+  -moz-transition-timing-function: @fn;
+  -o-transition-timing-function:@fn;
+  transition-timing-function: @fn;
+
+  -webkit-transition-delay: @delay;
+  -moz-transition-delay: @delay;
+  -o-transition-delay: @delay;
+  transition-delay: @delay;
+}
+
+/**
+ *  阴影效果
+ *  @param @h-shadow: 必需。水平阴影的位置。允许负值。
+ *  @param @v-shadow: 必需。垂直阴影的位置。允许负值。
+ *  @param @blur: 可选。模糊距离。
+ *  @param @spread: 可选。阴影的尺寸。
+ *  @param @color:  可选。阴影的颜色。请参阅 CSS 颜色值。
+ *  @param @inset:  可选。将外部阴影 (outset) 改为内部阴影。
+ */
+.shadow(@shadow-param: 10px 10px 15px #ccc) {
+  box-shadow: @shadow-param;
+  -webkit-box-shadow: @shadow-param;
+  -moz-box-shadow: @shadow-param;
+  -o-box-shadow: @shadow-param;
+}
+
+.select(@select: none) {
+  -webkit-touch-callout: @select;
+  -webkit-user-select: @select;
+  -moz-user-select: @select;
+  -ms-user-select: @select;
+  user-select: @select;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}

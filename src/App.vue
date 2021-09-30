@@ -5,6 +5,7 @@ import { ref } from 'vue';
 import locale from 'element-plus/lib/locale/lang/zh-cn';
 import HelloWorld from './components/HelloWorld.vue';
 import JsxDemo from './components/jsxDemo.jsx';
+// import {Axios} from '@/common/utils/index.js';
 const date = ref(null);
 </script>
 

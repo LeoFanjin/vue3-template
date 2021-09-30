@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
+    "lint": "eslint --ext .js,.jsx,.vue src"
   },
   "dependencies": {
     "element-plus": "^1.1.0-beta.17",
@@ -16,20 +16,22 @@
     "@vitejs/plugin-vue-jsx": "^1.1.8",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.18.0",
     "less": "^4.1.1",
     "lint-staged": "^11.1.2",
     "prettier": "^2.4.1",
     "unplugin-vue-components": "^0.15.4",
     "vite": "^2.5.10",
-    "vite-plugin-eslint": "^1.3.0"
+    "vite-plugin-eslint": "^1.3.0",
+    "yorkie": "^2.0.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
+      "prettier --write",
       "git add"
     ]
   }

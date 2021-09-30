@@ -1,0 +1,156 @@
+.app-head {
+  min-width: @app-head-min-width;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: @app-head-height - 1;
+  background-color: @head-background-color;
+  border-bottom: 1px solid @app-model-border-color;
+  font-size: @head-font-size;
+  z-index: 4;
+  transition: left 0.2s linear 0s;
+  .clearfix();
+}
+
+/* app-side-nav */
+.app-side-nav__brand {
+  .clearfix;
+  cursor: pointer;
+  display: inline-block;
+  // height: @app-head-height;
+  padding: (@app-head-height - 32) / 2 25px;
+  line-height: 32px;
+  letter-spacing: 1px;
+  font-size: @app-nav-font-size + 2;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  border-right: 1px solid lighten(@nav-background-base, 10%);
+  // border-bottom: 1px solid @app-model-border-color;
+  // width: @app-side-nav-width;
+  width: auto;
+  strong {
+    font-weight: bold;
+  }
+  img {
+    width: @app-head-logo-width;
+    height: @app-head-logo-height;
+  }
+  .brand-name {
+    font-style: @app-head-logo-fontsize;
+    font-family: @app-font-family;
+  }
+}
+
+.app-head__actions {
+  float: right;
+  margin-right: 5px;
+  list-style: none;
+  height: @app-head-height;
+  > li {
+    .slide-hover(@app-head-height, @app-head-height - 1, @app-text-color, @head-hover-background-color);
+    float: left;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 1px;
+
+    &.message {
+      padding: (@app-head-height - 22) / 2 10px;
+      > span {
+        float: right;
+        display: inline-block;
+        max-width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* padding-top: 10px; */
+        height: 29px;
+        line-height: 29px;
+      }
+      > ul {
+        position: absolute;
+        right: 0;
+        top: @app-head-height - 2;
+        background-color: #fff;
+        display: none;
+        border: 1px solid @app-model-border-color;
+        > li {
+          padding: 8px 10px;
+          width: 140px;
+          text-align: center;
+          border-bottom: 1px solid @app-model-border-color;
+          &:last-child {
+            border-bottom: 0;
+          }
+          //&:hover{
+          //  background-color: @head-hover-background-color;
+          //}
+        }
+      }
+      &:after {
+        display: none;
+      }
+      &:active {
+        background: none;
+      }
+    }
+    // 链接功能
+    &.link {
+      min-width: 50px;
+      text-align: center;
+      padding: (@app-head-height - 22) / 2 5px;
+      .select(none);
+      > a {
+        font-size: @head-font-size + 6;
+      }
+      .download-link {
+        span {
+          font-size: @head-font-size !important;
+        }
+      }
+    }
+    &:hover {
+      > a {
+        color: @head-font-color-hover;
+      }
+      > ul {
+        display: block;
+      }
+    }
+    &.active {
+      background-color: @head-hover-background-color;
+      a {
+        color: #2f3239;
+      }
+    }
+    &.profile-name {
+      padding: (@app-head-height - 30) / 2;
+      font-weight: 500;
+      img {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #d4d7d9;
+      }
+    }
+    .head_divide_line {
+      height: 30px;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      border-left: 1px solid @app-divide-border-color;
+      z-index: 9999;
+    }
+    > a {
+      color: @head-font-color;
+      width: 32px;
+      height: 32px;
+      border-radius: 3px;
+      line-height: 20px;
+      text-align: center;
+      text-decoration: none;
+      > .icon {
+        vertical-align: middle;
+      }
+    }
+  }
+}
