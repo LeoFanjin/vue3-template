@@ -1,10 +1,7 @@
 <template>
   <!-- 全局设置element语言 -->
   <el-config-provider :locale="locale">
-    <div
-      class="app-provider-wrapper"
-      v-loading.fullscreen.lock="getFullLoading"
-    >
+    <div class="app-provider-wrapper" v-loading.fullscreen.lock="getFullLoading">
       <router-view />
     </div>
   </el-config-provider>
