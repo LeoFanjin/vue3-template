@@ -1,0 +1,37 @@
+@import "../../static/css/theme-simple/variables/main";
+
+@background-color: @app-background-gray;
+
+#ap_personal {
+  .leftDiv {
+    padding-left: 0;
+    .content {
+      min-height: 300px;
+      .user_info_menu {
+        > li {
+          background-color: white;
+          padding-top: 7px;
+          padding-bottom: 7px;
+          padding-left: 40px;
+          padding-right: 15px;
+          margin-top: 3px;
+          text-align: left;
+          border: 1px solid @app-model-border-color;
+          cursor: pointer;
+          border-radius: 1px;
+          font-size: @head-font-size;
+          &.active {
+            background-color: @background-color;
+          }
+          &:hover {
+            background-color: @background-color;
+          }
+        }
+      }
+    }
+  }
+  .rightDiv {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

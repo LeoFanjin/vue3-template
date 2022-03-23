@@ -1,0 +1,57 @@
+@import '../../../static/css/theme-simple/variables/main';
+
+#personal_myAuth {
+  .panel-body {
+    min-height: 300px;
+    > ul {
+      margin: 0 20px;
+      > li {
+        border-bottom: 1px solid @app-border-color;
+        i {
+          color: #dcdcdc;
+        }
+        //&:nth-child(2n + 1) {
+        //  background-color: @app-background-gray;
+        //}
+        &:first-child {
+          background-color: white;
+        }
+        > div {
+          padding: 10px;
+          display: inline-block;
+          &.row-number {
+            width: 50px;
+            padding: 10px 10px;
+            text-align: center;
+          }
+        }
+
+        &.list-noContent {
+          text-align: center;
+          color: #999;
+        }
+      }
+    }
+  }
+  .organ-title {
+    margin: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 30px;
+    font-size: 14px;
+    background-color: #ebf1fa;
+    border-radius: 3px;
+  }
+  .black {
+    color: #df8505 !important;
+  }
+  .green {
+    color: #659265 !important;
+  }
+  .yellow {
+    color: #b1811d !important;
+  }
+  .blue {
+    color: #3276b1 !important;
+  }
+}

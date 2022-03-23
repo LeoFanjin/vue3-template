@@ -1,0 +1,103 @@
+// 主题颜色变量
+body{
+  --themeColor: rgba(255,255,255,1);
+  --themeColor9: rgba(255,255,255,1);
+  --themeColor8: rgba(255,255,255,1);
+  --themeColor7: rgba(255,255,255,1);
+  --themeColor6: rgba(255,255,255,1);
+  --themeColor5: rgba(255,255,255,1);
+  --themeColor4: rgba(255,255,255,1);
+  --themeColor3: rgba(255,255,255,1);
+  --themeColor2: rgba(255,255,255,1);
+  --themeColor1: rgba(255,255,255,1);
+}
+@themeColor: var(--themeColor);
+@themeColor9: var(--themeColor9);
+@themeColor8: var(--themeColor8);
+@themeColor7: var(--themeColor7);
+@themeColor6: var(--themeColor6);
+@themeColor5: var(--themeColor5);
+@themeColor4: var(--themeColor4);
+@themeColor3: var(--themeColor3);
+@themeColor2: var(--themeColor2);
+@themeColor1: var(--themeColor1);
+@themeColor0: var(--themeColor0);
+
+/* 改写bootstrap样式 */
+
+/* 其他 */
+/* 最小宽度 */
+@app-min-width: 1366px;
+
+/* --------------------- 颜色 start --------------------- */
+/* 基础颜色 */
+@gray: #2f3239;
+//@gray: #25272a;
+/* 文字颜色 */
+@app-text-color: @gray;
+/* 导航区或功能区头部文字颜色*/
+@app-nav-font-color: #25272a;
+/*列表或详情文字颜色*/
+@app-detail-font-color: #666666;
+/* 边框线颜色 */
+@app-border-color: #f5e6e7;
+//@app-border-color: #f5f6f7;
+//功能板块、导航板块、顶部板块、默认按钮边框线
+@app-model-border-color: #D4D7D9;
+//适用范围：表单文本框、文本域、表格边框线
+@app-text-border-color: #E1E1E1;
+//功能区域涉及的所有分割线
+@app-divide-border-color:#d6d7d8;
+/* hover公共颜色 */
+@app-hover-color: #f2f3f5;
+//@app-hover-color: #f5f6f7;
+/* 选中公共颜色 */
+@app-active-color: @app-hover-color;
+/* 主题背景色 */
+@app-background-base: #ffffff;
+/* 功能背景色 */
+@app-background-gray: #f5f6f7;
+
+/* 基本色系 */
+@app-color-blue: #2da9e9;
+@app-color-black: #314557;
+@app-color-red: #f15353;
+@app-color-green: #0ec8a2;
+@app-color-orange: #ff9e2a;
+/*通用辅助颜色*/
+@app-assist-color-red: #C82506;
+@app-assist-color-orange: #E86E2B;
+@app-assist-color-yellow: #F39019;
+@app-assist-color-green: #17AC41;
+@app-assist-color-lightGreen: #61D784;
+@app-assist-color-darkBlue: #5B7ED9;
+@app-assist-color-blue: #3498db;
+@app-assist-color-lightBlue: #4DC8E7;
+@app-assist-color-black: #2F3239;
+@app-assist-color-purple: #9C83Db;
+@app-assist-color-pink: #DB92D8;
+
+/* --------------------- 颜色 end --------------------- */
+
+
+
+/* --------------------- 文本 start --------------------- */
+/* 文字 */
+@app-font-family: "MicroSoft YaHei",arial,SimSun,Verdana,Geneva,Helvetica, sans-serif;
+@app-font-size: 14px;
+/* --------------------- 文本 end --------------------- */
+
+
+/* 阴影色 */
+@app-shadow-gray: lighten(@gray, 66.5%);
+
+
+//
+// extend
+@gray-base:              #000;
+@gray-dark:              lighten(@gray-base, 20%);   // #333
+@brand-primary:         darken(#428bca, 6.5%); // #337ab7
+@text-color:            @gray-dark;
+
+@input-border:                   #ccc;
+
