@@ -11,6 +11,7 @@ function getCookie(name) {
 }
 
 export const cookie = {
+  getCookie,
   removeCookie(name) {
     let exp = new Date();
     exp.setTime(exp.getTime() - 1);
