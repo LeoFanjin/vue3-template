@@ -5,7 +5,7 @@ import { constant } from './constant';
 function getChildren(parentId, resources) {
   const child = [];
 
-  _.each(resources, function(resource) {
+  _.each(resources, function (resource) {
     if (resource.parentId === parentId) {
       resource.children = getChildren(resource.id, resources);
       child.push(resource);
@@ -39,7 +39,7 @@ export const resource = {
         resource.isActive = false;
       }
 
-      _.each(resource.children, function(cr) {
+      _.each(resource.children, function (cr) {
         if (cr.path && _s(fullPath).startsWith(cr.path)) {
           cr.isActive = true;
           resource.isActive = true;
@@ -70,12 +70,12 @@ export const resource = {
       ) {
         let path = '';
 
-        _.each(obj.store.getters.getResource, function(resource) {
+        _.each(obj.store.getters.getResource, function (resource) {
           cf(resource);
         });
 
         // if (_.isEmpty(currentResource)) {
-        _.each(obj.store.getters.getLinkResource, function(resource) {
+        _.each(obj.store.getters.getLinkResource, function (resource) {
           cf(resource);
         });
         // }
@@ -99,7 +99,7 @@ export const resource = {
    */
   generateMenus(resources) {
     resources = _.chain(resources)
-      .map(resource => ({
+      .map((resource) => ({
         id: resource.resourceId,
         name: resource.resourceName,
         path: resource.resourceAddress,
@@ -119,7 +119,7 @@ export const resource = {
     // 系统资源
     let systemMenus = [];
 
-    _.each(resources[constant.resource_type.system], menu => {
+    _.each(resources[constant.resource_type.system], (menu) => {
       if (menu.parentId === '0' || !menu.parentId) {
         menu.children = getChildren(
           menu.id,
@@ -132,7 +132,7 @@ export const resource = {
     // 链接资源
     let linkMenus = [];
 
-    _.each(resources[constant.resource_type.link], menu => {
+    _.each(resources[constant.resource_type.link], (menu) => {
       if (menu.parentId === '0' || !menu.parentId) {
         menu.children = getChildren(
           menu.id,
@@ -145,7 +145,7 @@ export const resource = {
     // 外部资源
     let externalMenus = [];
 
-    _.each(resources[constant.resource_type.external], menu => {
+    _.each(resources[constant.resource_type.external], (menu) => {
       if (menu.parentId === '0' || !menu.parentId) {
         menu.children = getChildren(
           menu.id,
@@ -158,7 +158,7 @@ export const resource = {
     // 其他资源
     let otherMenus = [];
 
-    _.each(resources[constant.resource_type.other], menu => {
+    _.each(resources[constant.resource_type.other], (menu) => {
       if (menu.parentId === '0' || !menu.parentId) {
         menu.children = getChildren(
           menu.id,

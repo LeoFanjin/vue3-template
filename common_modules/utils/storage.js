@@ -1,10 +1,10 @@
-(function() {
+(function () {
   if (!sessionStorage.length) {
     // 这个调用能触发目标事件，从而达到共享数据的目的
     localStorage.setItem('getSessionStorage', Date.now());
   }
 
-  const storageEvent = event => {
+  const storageEvent = (event) => {
     if (event.key === 'getSessionStorage') {
       // 已存在的标签页会收到这个事件
       localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
@@ -22,12 +22,12 @@
   // 该事件是核心
   if (window.attachEvent) {
     // IE
-    window.attachEvent('onstorage', event => {
+    window.attachEvent('onstorage', (event) => {
       storageEvent(event);
     });
   } else {
     // chrome、Firefox
-    window.addEventListener('storage', event => {
+    window.addEventListener('storage', (event) => {
       storageEvent(event);
     });
   }
