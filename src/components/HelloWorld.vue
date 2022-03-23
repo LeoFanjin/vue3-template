@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <el-button @click="handleHello">hello</el-button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -53,18 +52,18 @@
       </li>
       <li>
         <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest"
+          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-mocha"
           target="_blank"
           rel="noopener"
-          >unit-jest</a
+          >unit-mocha</a
         >
       </li>
       <li>
         <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-e2e-nightwatch"
+          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-e2e-cypress"
           target="_blank"
           rel="noopener"
-          >e2e-nightwatch</a
+          >e2e-cypress</a
         >
       </li>
     </ul>
@@ -129,18 +128,10 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
   },
-  setup(props, { emit }) {
-    const handleHello = () => {
-      emit('hello', 'hello!!');
-    };
-    return {
-      handleHello
-    };
-  }
 };
 </script>
 

@@ -1,24 +1,16 @@
 {
   mode: 'development',
-  context: 'D:\\WebStormWorkSpace\\vue3-template',
-  node: {
-    setImmediate: false,
-    process: 'mock',
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty'
-  },
+  context: 'D:\\WebStormWorkSpace\\vue3-webpack-template',
   output: {
-    path: 'D:\\WebStormWorkSpace\\vue3-template\\dist',
+    hashFunction: 'xxhash64',
+    path: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\dist',
     filename: 'js/[name].js',
     publicPath: '/',
     chunkFilename: 'js/[name].js'
   },
   resolve: {
     alias: {
-      '@': 'D:\\WebStormWorkSpace\\vue3-template\\src',
+      '@': 'D:\\WebStormWorkSpace\\vue3-webpack-template\\src',
       vue$: 'vue/dist/vue.runtime.esm-bundler.js'
     },
     extensions: [
@@ -31,47 +23,38 @@
     ],
     modules: [
       'node_modules',
-      'D:\\WebStormWorkSpace\\vue3-template\\node_modules',
-      'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\@vue\\cli-service\\node_modules'
-    ],
-    plugins: [
-      /* config.resolve.plugin('pnp') */
-      {}
+      'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules',
+      'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\@vue\\cli-service\\node_modules'
     ]
   },
   resolveLoader: {
     modules: [
-      'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\@vue\\cli-plugin-babel\\node_modules',
+      'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\@vue\\cli-plugin-babel\\node_modules',
       'node_modules',
-      'D:\\WebStormWorkSpace\\vue3-template\\node_modules',
-      'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\@vue\\cli-service\\node_modules'
-    ],
-    plugins: [
-      /* config.resolve.plugin('pnp-loaders') */
-      {}
+      'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules',
+      'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\@vue\\cli-service\\node_modules'
     ]
   },
   module: {
     noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
     rules: [
+      /* config.module.rule('esm') */
+      {
+        test: /\.m?jsx?$/,
+        resolve: {
+          fullySpecified: false
+        }
+      },
       /* config.module.rule('vue') */
       {
         test: /\.vue$/,
         use: [
-          /* config.module.rule('vue').use('cache-loader') */
-          {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\cache-loader\\dist\\cjs.js',
-            options: {
-              cacheDirectory: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\.cache\\vue-loader',
-              cacheIdentifier: '0fa04d5c'
-            }
-          },
           /* config.module.rule('vue').use('vue-loader') */
           {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-loader-v16\\dist\\index.js',
+            loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-loader\\dist\\index.js',
             options: {
-              cacheDirectory: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\.cache\\vue-loader',
-              cacheIdentifier: '0fa04d5c',
+              cacheDirectory: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\.cache\\vue-loader',
+              cacheIdentifier: '62d657d6',
               babelParserPlugins: [
                 'jsx',
                 'classProperties',
@@ -81,75 +64,11 @@
           }
         ]
       },
-      /* config.module.rule('images') */
+      /* config.module.rule('vue-style') */
       {
-        test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
-        use: [
-          /* config.module.rule('images').use('url-loader') */
-          {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\url-loader\\dist\\cjs.js',
-            options: {
-              limit: 4096,
-              fallback: {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\file-loader\\dist\\cjs.js',
-                options: {
-                  name: 'img/[name].[hash:8].[ext]'
-                }
-              }
-            }
-          }
-        ]
-      },
-      /* config.module.rule('svg') */
-      {
-        test: /\.(svg)(\?.*)?$/,
-        use: [
-          /* config.module.rule('svg').use('file-loader') */
-          {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\file-loader\\dist\\cjs.js',
-            options: {
-              name: 'img/[name].[hash:8].[ext]'
-            }
-          }
-        ]
-      },
-      /* config.module.rule('media') */
-      {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        use: [
-          /* config.module.rule('media').use('url-loader') */
-          {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\url-loader\\dist\\cjs.js',
-            options: {
-              limit: 4096,
-              fallback: {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\file-loader\\dist\\cjs.js',
-                options: {
-                  name: 'media/[name].[hash:8].[ext]'
-                }
-              }
-            }
-          }
-        ]
-      },
-      /* config.module.rule('fonts') */
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
-        use: [
-          /* config.module.rule('fonts').use('url-loader') */
-          {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\url-loader\\dist\\cjs.js',
-            options: {
-              limit: 4096,
-              fallback: {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\file-loader\\dist\\cjs.js',
-                options: {
-                  name: 'fonts/[name].[hash:8].[ext]'
-                }
-              }
-            }
-          }
-        ]
+        test: /\.vue$/,
+        resourceQuery: /type=style/,
+        sideEffects: true
       },
       /* config.module.rule('pug') */
       {
@@ -180,6 +99,38 @@
           }
         ]
       },
+      /* config.module.rule('svg') */
+      {
+        test: /\.(svg)(\?.*)?$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[name].[hash:8][ext]'
+        }
+      },
+      /* config.module.rule('images') */
+      {
+        test: /\.(png|jpe?g|gif|webp|avif)(\?.*)?$/,
+        type: 'asset',
+        generator: {
+          filename: 'img/[name].[hash:8][ext]'
+        }
+      },
+      /* config.module.rule('media') */
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        type: 'asset',
+        generator: {
+          filename: 'media/[name].[hash:8][ext]'
+        }
+      },
+      /* config.module.rule('fonts') */
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+        type: 'asset',
+        generator: {
+          filename: 'fonts/[name].[hash:8][ext]'
+        }
+      },
       /* config.module.rule('css') */
       {
         test: /\.css$/,
@@ -190,31 +141,34 @@
             use: [
               /* config.module.rule('css').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('css').oneOf('vue-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2,
                   modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    auto: () => true
                   }
                 }
               },
               /* config.module.rule('css').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               }
             ]
@@ -225,28 +179,30 @@
             use: [
               /* config.module.rule('css').oneOf('vue').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('css').oneOf('vue').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('css').oneOf('vue').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               }
             ]
@@ -257,31 +213,30 @@
             use: [
               /* config.module.rule('css').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('css').oneOf('normal-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  importLoaders: 2,
-                  modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
-                  }
+                  sourceMap: true,
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('css').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               }
             ]
@@ -291,28 +246,30 @@
             use: [
               /* config.module.rule('css').oneOf('normal').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('css').oneOf('normal').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('css').oneOf('normal').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               }
             ]
@@ -329,31 +286,34 @@
             use: [
               /* config.module.rule('postcss').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('postcss').oneOf('vue-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2,
                   modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    auto: () => true
                   }
                 }
               },
               /* config.module.rule('postcss').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               }
             ]
@@ -364,28 +324,30 @@
             use: [
               /* config.module.rule('postcss').oneOf('vue').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('postcss').oneOf('vue').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('postcss').oneOf('vue').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               }
             ]
@@ -396,31 +358,30 @@
             use: [
               /* config.module.rule('postcss').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('postcss').oneOf('normal-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  importLoaders: 2,
-                  modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
-                  }
+                  sourceMap: true,
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('postcss').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               }
             ]
@@ -430,28 +391,30 @@
             use: [
               /* config.module.rule('postcss').oneOf('normal').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('postcss').oneOf('normal').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('postcss').oneOf('normal').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               }
             ]
@@ -468,38 +431,41 @@
             use: [
               /* config.module.rule('scss').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('scss').oneOf('vue-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2,
                   modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    auto: () => true
                   }
                 }
               },
               /* config.module.rule('scss').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('scss').oneOf('vue-modules').use('sass-loader') */
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: false
+                  sourceMap: true
                 }
               }
             ]
@@ -510,35 +476,37 @@
             use: [
               /* config.module.rule('scss').oneOf('vue').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('scss').oneOf('vue').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('scss').oneOf('vue').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('scss').oneOf('vue').use('sass-loader') */
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: false
+                  sourceMap: true
                 }
               }
             ]
@@ -549,38 +517,37 @@
             use: [
               /* config.module.rule('scss').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('scss').oneOf('normal-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  importLoaders: 2,
-                  modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
-                  }
+                  sourceMap: true,
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('scss').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('scss').oneOf('normal-modules').use('sass-loader') */
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: false
+                  sourceMap: true
                 }
               }
             ]
@@ -590,35 +557,37 @@
             use: [
               /* config.module.rule('scss').oneOf('normal').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('scss').oneOf('normal').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('scss').oneOf('normal').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('scss').oneOf('normal').use('sass-loader') */
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: false
+                  sourceMap: true
                 }
               }
             ]
@@ -635,38 +604,41 @@
             use: [
               /* config.module.rule('sass').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('sass').oneOf('vue-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2,
                   modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    auto: () => true
                   }
                 }
               },
               /* config.module.rule('sass').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('sass').oneOf('vue-modules').use('sass-loader') */
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   sassOptions: {
                     indentedSyntax: true
                   }
@@ -680,35 +652,37 @@
             use: [
               /* config.module.rule('sass').oneOf('vue').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('sass').oneOf('vue').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('sass').oneOf('vue').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('sass').oneOf('vue').use('sass-loader') */
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   sassOptions: {
                     indentedSyntax: true
                   }
@@ -722,38 +696,37 @@
             use: [
               /* config.module.rule('sass').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('sass').oneOf('normal-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  importLoaders: 2,
-                  modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
-                  }
+                  sourceMap: true,
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('sass').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('sass').oneOf('normal-modules').use('sass-loader') */
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   sassOptions: {
                     indentedSyntax: true
                   }
@@ -766,35 +739,37 @@
             use: [
               /* config.module.rule('sass').oneOf('normal').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('sass').oneOf('normal').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('sass').oneOf('normal').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('sass').oneOf('normal').use('sass-loader') */
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   sassOptions: {
                     indentedSyntax: true
                   }
@@ -814,38 +789,41 @@
             use: [
               /* config.module.rule('less').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('less').oneOf('vue-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2,
                   modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    auto: () => true
                   }
                 }
               },
               /* config.module.rule('less').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('less').oneOf('vue-modules').use('less-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\less-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\less-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false
+                  sourceMap: true
                 }
               }
             ]
@@ -856,35 +834,37 @@
             use: [
               /* config.module.rule('less').oneOf('vue').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('less').oneOf('vue').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('less').oneOf('vue').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('less').oneOf('vue').use('less-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\less-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\less-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false
+                  sourceMap: true
                 }
               }
             ]
@@ -895,38 +875,37 @@
             use: [
               /* config.module.rule('less').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('less').oneOf('normal-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  importLoaders: 2,
-                  modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
-                  }
+                  sourceMap: true,
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('less').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('less').oneOf('normal-modules').use('less-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\less-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\less-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false
+                  sourceMap: true
                 }
               }
             ]
@@ -936,35 +915,37 @@
             use: [
               /* config.module.rule('less').oneOf('normal').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('less').oneOf('normal').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('less').oneOf('normal').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('less').oneOf('normal').use('less-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\less-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\less-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false
+                  sourceMap: true
                 }
               }
             ]
@@ -981,39 +962,41 @@
             use: [
               /* config.module.rule('stylus').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2,
                   modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    auto: () => true
                   }
                 }
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('stylus-loader') */
               {
                 loader: 'stylus-loader',
                 options: {
-                  sourceMap: false,
-                  preferPathResolver: 'webpack'
+                  sourceMap: true
                 }
               }
             ]
@@ -1024,36 +1007,37 @@
             use: [
               /* config.module.rule('stylus').oneOf('vue').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('stylus').oneOf('vue').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('stylus').oneOf('vue').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('stylus').oneOf('vue').use('stylus-loader') */
               {
                 loader: 'stylus-loader',
                 options: {
-                  sourceMap: false,
-                  preferPathResolver: 'webpack'
+                  sourceMap: true
                 }
               }
             ]
@@ -1064,39 +1048,37 @@
             use: [
               /* config.module.rule('stylus').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  importLoaders: 2,
-                  modules: {
-                    localIdentName: '[name]_[local]_[hash:base64:5]'
-                  }
+                  sourceMap: true,
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('stylus-loader') */
               {
                 loader: 'stylus-loader',
                 options: {
-                  sourceMap: false,
-                  preferPathResolver: 'webpack'
+                  sourceMap: true
                 }
               }
             ]
@@ -1106,36 +1088,37 @@
             use: [
               /* config.module.rule('stylus').oneOf('normal').use('vue-style-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\vue-style-loader\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\vue-style-loader\\index.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   shadowMode: false
                 }
               },
               /* config.module.rule('stylus').oneOf('normal').use('css-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\css-loader\\dist\\cjs.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\css-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
+                  sourceMap: true,
                   importLoaders: 2
                 }
               },
               /* config.module.rule('stylus').oneOf('normal').use('postcss-loader') */
               {
-                loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\postcss-loader\\src\\index.js',
+                loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\postcss-loader\\dist\\cjs.js',
                 options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  sourceMap: true,
+                  postcssOptions: {
+                    plugins: [
+                      function () { /* omitted long function */ }
+                    ]
+                  }
                 }
               },
               /* config.module.rule('stylus').oneOf('normal').use('stylus-loader') */
               {
                 loader: 'stylus-loader',
                 options: {
-                  sourceMap: false,
-                  preferPathResolver: 'webpack'
+                  sourceMap: true
                 }
               }
             ]
@@ -1149,44 +1132,13 @@
           function () { /* omitted long function */ }
         ],
         use: [
-          /* config.module.rule('js').use('cache-loader') */
-          {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\cache-loader\\dist\\cjs.js',
-            options: {
-              cacheDirectory: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\.cache\\babel-loader',
-              cacheIdentifier: '31f238ba'
-            }
-          },
           /* config.module.rule('js').use('babel-loader') */
           {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\babel-loader\\lib\\index.js'
-          }
-        ]
-      },
-      /* config.module.rule('eslint') */
-      {
-        enforce: 'pre',
-        test: /\.(vue|(j|t)sx?)$/,
-        exclude: [
-          /node_modules/,
-          'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\@vue\\cli-service\\lib'
-        ],
-        use: [
-          /* config.module.rule('eslint').use('eslint-loader') */
-          {
-            loader: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\eslint-loader\\index.js',
+            loader: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\babel-loader\\lib\\index.js',
             options: {
-              extensions: [
-                '.js',
-                '.jsx',
-                '.vue'
-              ],
-              cache: true,
-              cacheIdentifier: '3ac4fde0',
-              emitWarning: true,
-              emitError: false,
-              eslintPath: 'D:\\WebStormWorkSpace\\vue3-template\\node_modules\\eslint',
-              formatter: undefined
+              cacheCompression: false,
+              cacheDirectory: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\.cache\\babel-loader',
+              cacheIdentifier: 'b66f5b04'
             }
           }
         ]
@@ -1194,9 +1146,10 @@
     ]
   },
   optimization: {
+    realContentHash: false,
     splitChunks: {
       cacheGroups: {
-        vendors: {
+        defaultVendors: {
           name: 'chunk-vendors',
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
@@ -1245,8 +1198,6 @@
               safari10: true
             }
           },
-          sourceMap: true,
-          cache: true,
           parallel: true,
           extractComments: false
         }
@@ -1288,51 +1239,57 @@
     /* config.plugin('html') */
     new HtmlWebpackPlugin(
       {
-        title: 'vue3-demo',
+        title: 'vue3-webpack-template',
+        scriptLoading: 'defer',
         templateParameters: function () { /* omitted long function */ },
-        template: 'D:\\WebStormWorkSpace\\vue3-template\\public\\index.html'
+        template: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\public\\index.html'
       }
     ),
     /* config.plugin('pwa') */
     new HtmlPwaPlugin(
       {
-        name: 'vue3-demo'
-      }
-    ),
-    /* config.plugin('preload') */
-    new PreloadPlugin(
-      {
-        rel: 'preload',
-        include: 'initial',
-        fileBlacklist: [
-          /\.map$/,
-          /hot-update\.js$/
-        ]
-      }
-    ),
-    /* config.plugin('prefetch') */
-    new PreloadPlugin(
-      {
-        rel: 'prefetch',
-        include: 'asyncChunks'
+        name: 'vue3-webpack-template'
       }
     ),
     /* config.plugin('copy') */
     new CopyPlugin(
-      [
-        {
-          from: 'D:\\WebStormWorkSpace\\vue3-template\\public',
-          to: 'D:\\WebStormWorkSpace\\vue3-template\\dist',
-          toType: 'dir',
-          ignore: [
-            '.DS_Store',
-            {
-              glob: 'index.html',
-              matchBase: false
+      {
+        patterns: [
+          {
+            from: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\public',
+            to: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\dist',
+            toType: 'dir',
+            noErrorOnMissing: true,
+            globOptions: {
+              ignore: [
+                '**/.DS_Store',
+                'D:/WebStormWorkSpace/vue3-webpack-template/public/index.html'
+              ]
+            },
+            info: {
+              minimized: true
             }
-          ]
-        }
-      ]
+          }
+        ]
+      }
+    ),
+    /* config.plugin('eslint') */
+    new ESLintWebpackPlugin(
+      {
+        extensions: [
+          '.js',
+          '.jsx',
+          '.vue'
+        ],
+        cwd: 'D:\\WebStormWorkSpace\\vue3-webpack-template',
+        cache: true,
+        cacheLocation: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\.cache\\eslint\\35e1629c.json',
+        context: 'D:\\WebStormWorkSpace\\vue3-webpack-template',
+        failOnWarning: false,
+        failOnError: true,
+        eslintPath: 'D:\\WebStormWorkSpace\\vue3-webpack-template\\node_modules\\eslint',
+        formatter: 'stylish'
+      }
     )
   ],
   entry: {

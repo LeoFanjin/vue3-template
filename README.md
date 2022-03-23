@@ -1,4 +1,4 @@
-# vue3-demo
+# vue3-webpack-template
 
 ## Project setup
 ```
