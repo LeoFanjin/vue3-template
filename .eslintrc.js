@@ -30,7 +30,8 @@ module.exports = {
         exports: 'never',
         functions: 'never'
       }
-    ] // 禁止末尾强制逗号
+    ], // 禁止末尾强制逗号
+    'vue/multi-word-component-names': 0 // 关闭强制驼峰法命名
     // 'vue/no-multiple-template-root': 'off'
   },
   overrides: [
@@ -45,3 +46,4 @@ module.exports = {
     }
   ]
 };
+
