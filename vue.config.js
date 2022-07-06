@@ -45,7 +45,8 @@ module.exports = defineConfig({
         ]
       }),
       Components({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [ElementPlusResolver()],
+        directoryAsNamespace: true
       })
       // 样式自动引入(没用上)
       // unpluginElement()

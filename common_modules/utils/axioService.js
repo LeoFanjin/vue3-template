@@ -140,7 +140,9 @@ export const Axios = {
     }
     // 设置拦截器
     requestInterceptorHelper(axiosInstance);
-    responseInterceptorHelper(axiosInstance);
+    responseInterceptorHelper(axiosInstance, {
+      handler: ResponseInterceptor.responseWithoutFormat
+    });
     return axiosInstance(config);
   },
 
@@ -210,7 +212,9 @@ export const Axios = {
     }
     // 设置拦截器
     requestInterceptorHelper(axiosInstance);
-    responseInterceptorHelper(axiosInstance);
+    responseInterceptorHelper(axiosInstance, {
+      handler: ResponseInterceptor.responseWithoutFormat
+    });
     return axiosInstance(config);
   },
 
