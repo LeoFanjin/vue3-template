@@ -11,3 +11,8 @@ import '@/ap-base/static/css/main.less';
 
 // 引入图标库
 import '@/ap-base/static/fonts/font-class/iconfont.css';
+
+// 手动引入element样式
+// import 'element-plus/theme-chalk/el-loading.css';
+// import 'element-plus/theme-chalk/el-message.css';
+// import 'element-plus/theme-chalk/el-message-box.css';
