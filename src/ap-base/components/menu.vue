@@ -354,7 +354,8 @@ export default defineComponent({
       // getResource,
       getFilteredResource,
       shrinkage,
-      toggleMenu
+      toggleMenu,
+      authFilter
     };
   }
 });
