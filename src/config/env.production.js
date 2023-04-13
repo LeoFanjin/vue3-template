@@ -1,6 +1,6 @@
 const config = {
   system_code: '20a7c0398c70f798d1b9dd43b65989d8',
-  base_api: 'http://111.33.152.150:10110/JBTJFX',
+  // base_api: 'http://111.33.152.150:10110/JBTJFX',
   // base_api: 'http://10.20.20.151:8011/JBTJFX',
   // base_api: 'http://111.33.152.150:10096/JBTJFX',
   title: '举报信息统计分析pro',
