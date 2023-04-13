@@ -1,11 +1,26 @@
 import appConfig from '../config/index';
 
-let indexConfig = {};
-if (typeof extra !== 'undefined') {
-  indexConfig = Object.assign({}, extra);
+// 合并模式文件中的变量
+const envConfig = Object.create(null);
+if (process.env) {
+  const envEntries = Object.entries(process.env);
+  if (envEntries.length) {
+    envEntries.forEach(([key, val]) => {
+      if (key.startsWith('VUE_APP_')) {
+        const localKey = key.substring(8).toLowerCase();
+        envConfig[localKey] = val;
+      }
+    });
+  }
 }
 
-Object.assign(G, appConfig, {
+// 合并extra中可能存在的更改的变量
+const extraConfig = {};
+if (typeof extra !== 'undefined') {
+  Object.assign(extraConfig, extra);
+}
+
+Object.assign(G, envConfig, appConfig, extraConfig, {
   isRelyAPI: false, // 是否依赖后台接口
   homePage: '/home', // 首页路由
   homeLocation: 'top', // 首页位置 (left: 左侧、top: 顶部)
@@ -20,12 +35,6 @@ Object.assign(G, appConfig, {
   token: null,
   jump: null
 });
-indexConfig.system_code && (G.system_code = indexConfig.system_code);
-indexConfig.title && (G.title = indexConfig.title);
-indexConfig.lang && (G.lang = indexConfig.lang);
-indexConfig.base_api && (G.base_api = indexConfig.base_api);
-indexConfig.portalPage && (G.portalPage = indexConfig.portalPage);
-indexConfig.loginPage && (G.loginPage = indexConfig.loginPage);
 
 if (!G.isRelyAPI) {
   G.localResource = require('@/ap-base/local-resources');

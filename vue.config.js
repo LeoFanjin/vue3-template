@@ -21,7 +21,7 @@ module.exports = defineConfig({
   css: {
     sourceMap: process.env.NODE_ENV === 'development' ? true : false
   },
-  // publicPath: '/ap/web/',
+  publicPath: process.env.BASE_URL || '/',
   configureWebpack: (config) => {
     config.resolve.modules.push('common_modules');
     // 解决vue-i18n警告
