@@ -38,7 +38,7 @@ const routes = [
           )
       }
     ],
-    beforeEnter: (to, from, next) => {
+    /* beforeEnter: (to, from, next) => {
       const user_info = Storage.get(G.storage_key);
       if (to && to.path !== G.loginPage) {
         if (_.isEmpty(user_info)) {
@@ -55,7 +55,7 @@ const routes = [
       } else {
         next();
       }
-    },
+    }, */
     redirect: G.homePage
   },
   {
